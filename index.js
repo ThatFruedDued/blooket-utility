@@ -1,14 +1,11 @@
 (async()=>{
   if(!localStorage.getItem('prefs')){
-    localStorage.setItem('prefs', '{}');
+    localStorage.setItem('prefs', '{"essentialPatches": true}');
   }
   window.win = window.open('/');
   setTimeout(() => {
-    let writeVal = '<html><head></head><body style="height: 0"><div id="app"></div>';
+    let writeVal = '<!doctype html><html lang="en" translate="no"><head><link rel="icon" href="/favicon.ico"> <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous"><script src="https://kit.fontawesome.com/984809ea42.js" crossorigin="anonymous"></script><style>.grecaptcha-badge{opacity:0}.vis-network{outline:0}</style><title>Blooket</title></head><body style="height: 0"><div id="app"></div>';
     const scripts = [
-      "https://www.google-analytics.com/analytics.js",
-      "https://kit.fontawesome.com/984809ea42.js",
-      "https://js.stripe.com/v3",
       "https://thatfrueddued.github.io/blooket-hack/scripts/0.js",
       "https://thatfrueddued.github.io/blooket-hack/scripts/1.js",
       "https://thatfrueddued.github.io/blooket-hack/scripts/2.js",
@@ -55,6 +52,18 @@
     for(let script of scripts){
       writeVal += '<script src="' + script + '"></script>';
     }
-    win.document.write(writeVal);
+    if(JSON.parse(localStorage.getItem('prefs')).essentialPatches){
+      win.navTo = function(page){
+        win.document.body.innerHTML = '<div id="app"></div>'
+        win.history.pushState(null, null, page);
+        fetch("https://thatfrueddued.github.io/blooket-hack/scripts/loader.js")
+          .then(r => r.text())
+          .then(text => {
+            const func = new win.Function(text);
+            func();
+          });
+      }
+    }
+    win.document.write(writeVal + '</body></html>');
   });
 })();

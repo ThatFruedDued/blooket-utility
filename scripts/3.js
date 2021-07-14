@@ -1270,13 +1270,13 @@
           {
             key: 'onHost',
             value: function () {
-              this.loading || (this.loading = !0, window.open('/host?id='.concat(this.state.game.id), '_blank').focus(), window.location.reload());
+              this.loading || JSON.parse(localStorage.getItem('prefs')).essentialPatches ? (this.loading = !0, window.navTo('/host?id='.concat(this.state.game.id))) : (this.loading = !0, window.open('/host?id='.concat(this.state.game.id), '_blank').focus(), window.location.reload());
             }
           },
           {
             key: 'onSolo',
             value: function () {
-              this.loading || (this.loading = !0, this.state.game.id && window ? (window.open('/solo?id='.concat(this.state.game.id), '_blank').focus(), window.location.reload()) : this.loading = !1);
+              this.loading || JSON.parse(localStorage.getItem('prefs')).essentialPatches ? (this.loading = !0, window.navTo('/solo?id='.concat(this.state.game.id))) : (this.loading = !0, this.state.game.id && window ? (window.open('/solo?id='.concat(this.state.game.id), '_blank').focus(), window.location.reload()) : this.loading = !1);
             }
           },
           {
