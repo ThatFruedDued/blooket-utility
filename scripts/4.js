@@ -1370,7 +1370,7 @@
                     name: t.name,
                     stripeId: t.stripe
                   }).then(function (e) {
-                    if(JSON.parse(localStorage.getItem('prefs')).spoofPlus){
+                    if(JSON.parse(window.getPref('spoofPlus')){
                       a.setState({
                         loggedIn: !0,
                         plan: 'Plus'

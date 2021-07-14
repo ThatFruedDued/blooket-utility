@@ -144,7 +144,7 @@
                     name: t.name,
                     stripeId: t.stripe
                   }).then(function (e) {
-                    if(JSON.parse(localStorage.getItem('prefs')).spoofPlus){
+                    if(window.getPref('spoofPlus')){
                       a.setState({
                         plan: 'Spoofed Plus',
                         planEnd: 'Never',
@@ -1278,13 +1278,13 @@
           {
             key: 'onHost',
             value: function () {
-              this.loading || JSON.parse(localStorage.getItem('prefs')).essentialPatches ? (this.loading = !0, window.navTo('/host?id='.concat(this.state.game.id))) : (this.loading = !0, window.open('/host?id='.concat(this.state.game.id), '_blank').focus(), window.location.reload());
+              this.loading || window.getPref('essentialPatches') ? (this.loading = !0, window.navTo('/host?id='.concat(this.state.game.id))) : (this.loading = !0, window.open('/host?id='.concat(this.state.game.id), '_blank').focus(), window.location.reload());
             }
           },
           {
             key: 'onSolo',
             value: function () {
-              this.loading || JSON.parse(localStorage.getItem('prefs')).essentialPatches ? (this.loading = !0, window.navTo('/solo?id='.concat(this.state.game.id))) : (this.loading = !0, this.state.game.id && window ? (window.open('/solo?id='.concat(this.state.game.id), '_blank').focus(), window.location.reload()) : this.loading = !1);
+              this.loading || window.getPref('essentialPatches') ? (this.loading = !0, window.navTo('/solo?id='.concat(this.state.game.id))) : (this.loading = !0, this.state.game.id && window ? (window.open('/solo?id='.concat(this.state.game.id), '_blank').focus(), window.location.reload()) : this.loading = !1);
             }
           },
           {
@@ -1368,7 +1368,7 @@
               }))) : o.a.createElement('div', { className: S.a.headerFillerContainer }, o.a.createElement('div', { className: S.a.headerFillerText }, 'Blooket')), o.a.createElement('div', { className: S.a.headerTextContainer }, o.a.createElement('div', { className: S.a.headerTitle }, this.state.game.title), o.a.createElement('div', { className: S.a.headerDesc }, this.state.game.desc), o.a.createElement('div', { className: S.a.headerBottomContainer }, o.a.createElement('i', { className: _()(S.a.headerAuthorIcon, 'fas fa-user') }), o.a.createElement(m.a, {
                 className: S.a.headerAuthorText,
                 to: '/discover?n='.concat(encodeURIComponent(this.state.game.author))
-              }, this.state.game.author), (JSON.parse(localStorage.getItem('prefs')).spoofAdmin ? true : [
+              }, this.state.game.author), (window.getPref('spoofAdmin') ? true : [
                 'Bot',
                 'Tom@Blooket'
               ].includes(this.state.name)) ? o.a.createElement('div', {
@@ -2138,7 +2138,7 @@
                   }
                   return e.abrupt('return', this.props.history.push('/login'));
                 case 5:
-                  this.name = t.name, (JSON.parse(localStorage.getItem('prefs')).spoofAdmin ? true : [
+                  this.name = t.name, (window.getPref('spoofAdmin') ? true : [
                     'Bot',
                     'Ben',
                     'test'

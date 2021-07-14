@@ -64,6 +64,18 @@
           });
       }
     }
+    win.getPref = function(pref){
+      const prefArr = pref.split('/');
+      let currentVal = JSON.parse(localStorage.getItem('prefs'));
+      for(let val of prefArr){
+        if(typeof currentVal[val] !== 'undefined'){
+          currentVal = currentVal[val];
+        } else {
+          return false;
+        }
+      }
+      return currentVal;
+    }
     win.document.write(writeVal + '</body></html>');
   });
 })();

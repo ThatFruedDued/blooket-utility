@@ -545,7 +545,7 @@
                       c.here && c.setState({
                         ready: !c.props.cafe.mode || c.state.ready,
                         name: t.name,
-                        plus: JSON.parse(localStorage.getItem('prefs')).spoofPlus ? true : 'Starter' !== e.data.plan || c.props.client && c.props.client.plus
+                        plus: window.getPref('spoofPlus') ? true : 'Starter' !== e.data.plan || c.props.client && c.props.client.plus
                       });
                     }).catch(function (e) {
                       console.error(e);
@@ -829,7 +829,7 @@
                 case 0:
                   return e.next = 2, this.props.user.getData();
                 case 2:
-                  if ((t = e.sent) && (JSON.parse(localStorage.getItem('prefs')).spoofAdmin ? true : ['Bot'].includes(t.name))) {
+                  if ((t = e.sent) && (window.getPref('spoofAdmin') ? true : ['Bot'].includes(t.name))) {
                     e.next = 5;
                     break;
                   }
@@ -1693,7 +1693,7 @@
                 case 0:
                   return e.next = 2, this.props.user.getData();
                 case 2:
-                  if ((t = e.sent) && (JSON.parse(localStorage.getItem('prefs')).spoofAdmin ? true : [
+                  if ((t = e.sent) && (window.getPref('spoofAdmin') ? true : [
                       'Tom@Blooket',
                       'Bot'
                     ].includes(t.name))) {
@@ -3119,7 +3119,7 @@
               }).then(function (e) {
                 t.here && t.setState({
                   showFinal: !0,
-                  plus: JSON.parse(localStorage.getItem('prefs')).spoofPlus ? true : 'Starter' !== e.data.plan
+                  plus: window.getPref('spoofPlus') ? true : 'Starter' !== e.data.plan
                 });
               }).catch(function (e) {
                 console.error(e);
@@ -4702,7 +4702,7 @@
                 case 0:
                   return e.next = 2, this.props.user.getData();
                 case 2:
-                  if ((t = e.sent) && (JSON.parse(localStorage.getItem('prefs')).spoofAdmin ? true : [
+                  if ((t = e.sent) && (window.getPref('spoofAdmin') ? true : [
                       'Tom@Blooket',
                       'Bot'
                     ].includes(t.name))) {
