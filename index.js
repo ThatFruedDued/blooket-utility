@@ -1,4 +1,7 @@
 (async()=>{
+  if(!localStorage.getItem('prefs')){
+    localStorage.setItem('prefs', '{}');
+  }
   window.win = window.open('/');
   setTimeout(() => {
     let writeVal = '<html><head></head><body style="height: 0"><div id="app"></div>';

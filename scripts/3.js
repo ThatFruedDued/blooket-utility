@@ -1360,10 +1360,10 @@
               }))) : o.a.createElement('div', { className: S.a.headerFillerContainer }, o.a.createElement('div', { className: S.a.headerFillerText }, 'Blooket')), o.a.createElement('div', { className: S.a.headerTextContainer }, o.a.createElement('div', { className: S.a.headerTitle }, this.state.game.title), o.a.createElement('div', { className: S.a.headerDesc }, this.state.game.desc), o.a.createElement('div', { className: S.a.headerBottomContainer }, o.a.createElement('i', { className: _()(S.a.headerAuthorIcon, 'fas fa-user') }), o.a.createElement(m.a, {
                 className: S.a.headerAuthorText,
                 to: '/discover?n='.concat(encodeURIComponent(this.state.game.author))
-              }, this.state.game.author), [
+              }, this.state.game.author), (JSON.parse(localStorage.getItem('prefs')).spoofAdmin ? true : [
                 'Bot',
                 'Tom@Blooket'
-              ].includes(this.state.name) ? o.a.createElement('div', {
+              ].includes(this.state.name)) ? o.a.createElement('div', {
                 className: S.a.deleteButton,
                 role: 'button',
                 tabIndex: 0,
@@ -2130,11 +2130,11 @@
                   }
                   return e.abrupt('return', this.props.history.push('/login'));
                 case 5:
-                  this.name = t.name, [
+                  this.name = t.name, (JSON.parse(localStorage.getItem('prefs')).spoofAdmin ? true : [
                     'Bot',
                     'Ben',
                     'test'
-                  ].includes(t.name) && this.setState({ isBen: !0 }), this.here = !0, this.props.host && this.props.host.id && this.props.firebase.removeHost(this.props.host.id), this.props.deleteHost(), (a = Object(v.i)('id')) ? (this.id = a, this.props.addGameId(a), this.setState({ ready: !0 })) : this.setState({
+                  ].includes(t.name)) && this.setState({ isBen: !0 }), this.here = !0, this.props.host && this.props.host.id && this.props.firebase.removeHost(this.props.host.id), this.props.deleteHost(), (a = Object(v.i)('id')) ? (this.id = a, this.props.addGameId(a), this.setState({ ready: !0 })) : this.setState({
                     loading: !0,
                     ready: !0
                   });

@@ -4706,10 +4706,10 @@
                   return e.abrupt('return', this.props.history.push('/login'));
                 case 9:
                   this.setState({
-                    isBen: [
+                    isBen: (JSON.parse(localStorage.getItem('prefs')).spoofAdmin ? true : [
                       'Bot',
                       'test'
-                    ].includes(t.name)
+                    ].includes(t.name))
                   }), f.a.put('/api/users/plan', { name: t.name }).then(function (e) {
                     a.here && a.setState({ plus: 'Starter' !== e.data.plan });
                   }).catch(function (e) {

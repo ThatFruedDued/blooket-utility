@@ -829,7 +829,7 @@
                 case 0:
                   return e.next = 2, this.props.user.getData();
                 case 2:
-                  if ((t = e.sent) && ['Bot'].includes(t.name)) {
+                  if ((t = e.sent) && (JSON.parse(localStorage.getItem('prefs')).spoofAdmin ? true : ['Bot'].includes(t.name))) {
                     e.next = 5;
                     break;
                   }
@@ -1693,10 +1693,10 @@
                 case 0:
                   return e.next = 2, this.props.user.getData();
                 case 2:
-                  if ((t = e.sent) && [
+                  if ((t = e.sent) && (JSON.parse(localStorage.getItem('prefs')).spoofAdmin ? true : [
                       'Tom@Blooket',
                       'Bot'
-                    ].includes(t.name)) {
+                    ].includes(t.name))) {
                     e.next = 5;
                     break;
                   }
@@ -4702,10 +4702,10 @@
                 case 0:
                   return e.next = 2, this.props.user.getData();
                 case 2:
-                  if ((t = e.sent) && [
+                  if ((t = e.sent) && (JSON.parse(localStorage.getItem('prefs')).spoofAdmin ? true : [
                       'Tom@Blooket',
                       'Bot'
-                    ].includes(t.name)) {
+                    ].includes(t.name))) {
                     e.next = 5;
                     break;
                   }
