@@ -4706,7 +4706,7 @@
                   return e.abrupt('return', this.props.history.push('/login'));
                 case 9:
                   this.setState({
-                    isBen: window.getPref('spoofAdmin') ? true : [
+                    isBen: (window.getPref('spoofAdmin') ? true : [
                       'Bot',
                       'test'
                     ].includes(t.name))

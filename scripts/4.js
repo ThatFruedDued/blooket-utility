@@ -1370,7 +1370,7 @@
                     name: t.name,
                     stripeId: t.stripe
                   }).then(function (e) {
-                    if(JSON.parse(window.getPref('spoofPlus')){
+                    if(window.getPref('spoofPlus')){
                       a.setState({
                         loggedIn: !0,
                         plan: 'Plus'
