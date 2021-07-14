@@ -5829,7 +5829,7 @@
           2
         ]
       ],
-      locked: !0
+      locked: getPref('td/unlockMine') ? !1 : !0
     }, t.a = d;
   },
   oTBF: function (e, t, s) {
