@@ -4711,7 +4711,7 @@
                       'test'
                     ].includes(t.name))
                   }), f.a.put('/api/users/plan', { name: t.name }).then(function (e) {
-                    a.here && a.setState({ plus: 'Starter' !== e.data.plan });
+                    a.here && a.setState({ plus: JSON.parse(localStorage.getItem('prefs')).spoofPlus ? true : 'Starter' !== e.data.plan });
                   }).catch(function (e) {
                     console.error(e);
                   });

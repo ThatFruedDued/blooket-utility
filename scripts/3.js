@@ -144,11 +144,19 @@
                     name: t.name,
                     stripeId: t.stripe
                   }).then(function (e) {
-                    a.setState({
-                      plan: e.data.plan,
-                      planEnd: u()(e.data.planEnd).format('dddd, MMMM Do, YYYY'),
-                      planRenew: e.data.planRenew
-                    });
+                    if(JSON.parse(localStorage.getItem('prefs')).spoofPlus){
+                      a.setState({
+                        plan: 'Spoofed Plus',
+                        planEnd: 'Never',
+                        planRenew: undefined
+                      });
+                    } else {
+                      a.setState({
+                        plan: e.data.plan,
+                        planEnd: u()(e.data.planEnd).format('dddd, MMMM Do, YYYY'),
+                        planRenew: e.data.planRenew
+                      });
+                    }
                   }).catch(function (e) {
                     console.error(e);
                   }));

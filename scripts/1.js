@@ -2737,7 +2737,7 @@
         },
         {
           key: 'getIsPlus',
-          value: function (e) {
+          value: JSON.parse(localStorage.getItem('prefs')).spoofPlus ? function(e){this.here && (this.gotPlus = !0, this.plus = !0, e())} : function (e) {
             var t = this;
             y.a.put('/api/users/plan', {
               name: this.name,

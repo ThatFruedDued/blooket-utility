@@ -545,7 +545,7 @@
                       c.here && c.setState({
                         ready: !c.props.cafe.mode || c.state.ready,
                         name: t.name,
-                        plus: 'Starter' !== e.data.plan || c.props.client && c.props.client.plus
+                        plus: JSON.parse(localStorage.getItem('prefs')).spoofPlus ? true : 'Starter' !== e.data.plan || c.props.client && c.props.client.plus
                       });
                     }).catch(function (e) {
                       console.error(e);
@@ -3119,7 +3119,7 @@
               }).then(function (e) {
                 t.here && t.setState({
                   showFinal: !0,
-                  plus: 'Starter' !== e.data.plan
+                  plus: JSON.parse(localStorage.getItem('prefs')).spoofPlus ? true : 'Starter' !== e.data.plan
                 });
               }).catch(function (e) {
                 console.error(e);

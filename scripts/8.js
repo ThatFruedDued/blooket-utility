@@ -2082,7 +2082,7 @@
               t.here && t.setState({
                 showFinal: !0,
                 chooseMap: !1,
-                plus: 'Starter' !== e.data.plan
+                plus: JSON.parse(localStorage.getItem('prefs')).spoofPlus ? true : 'Starter' !== e.data.plan
               });
             }).catch(function (e) {
               console.error(e);
@@ -2591,7 +2591,7 @@
                       c.here && c.setState({
                         ready: !c.props.defense.isLive || c.state.ready,
                         name: t.name,
-                        plus: 'Starter' !== e.data.plan || c.props.client && c.props.client.plus
+                        plus: JSON.parse(localStorage.getItem('prefs')).spoofPlus ? true : 'Starter' !== e.data.plan || c.props.client && c.props.client.plus
                       });
                     }).catch(function (e) {
                       console.error(e);

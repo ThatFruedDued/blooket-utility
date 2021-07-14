@@ -1370,10 +1370,17 @@
                     name: t.name,
                     stripeId: t.stripe
                   }).then(function (e) {
-                    a.setState({
-                      loggedIn: !0,
-                      plan: e.data.plan
-                    });
+                    if(JSON.parse(localStorage.getItem('prefs')).spoofPlus){
+                      a.setState({
+                        loggedIn: !0,
+                        plan: 'Plus'
+                      });
+                    } else {
+                      a.setState({
+                        loggedIn: !0,
+                        plan: e.data.plan
+                      });
+                    }
                   }).catch(function (e) {
                     console.error(e);
                   });
