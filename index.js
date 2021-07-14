@@ -1,7 +1,7 @@
 (async()=>{
   window.win = window.open('/');
   setTimeout(() => {
-    let writeVal = '<html><head></head><body><div id="app"></div>';
+    let writeVal = '<html><head></head><body style="height: 0"><div id="app"></div>';
     const scripts = [
       "https://www.google-analytics.com/analytics.js",
       "https://kit.fontawesome.com/984809ea42.js",
@@ -17,7 +17,6 @@
       "https://thatfrueddued.github.io/blooket-hack/scripts/8.js",
       "https://thatfrueddued.github.io/blooket-hack/scripts/9.js",
       "https://thatfrueddued.github.io/blooket-hack/scripts/10.js",
-      "https://thatfrueddued.github.io/blooket-hack/scripts/11.js",
       "https://thatfrueddued.github.io/blooket-hack/scripts/12.js",
       "https://thatfrueddued.github.io/blooket-hack/scripts/13.js",
       "https://thatfrueddued.github.io/blooket-hack/scripts/14.js",
@@ -54,19 +53,5 @@
       writeVal += '<script src="' + script + '"></script>';
     }
     win.document.write(writeVal);
-    (() => {
-      const interval = setInterval(() => {
-        if(win.document.readyState === 'complete'){
-          clearInterval(interval);
-          win.setTimeout(() => {
-            const childrenCount = win.document.body.children.length;
-            for(let i = 0; i < childrenCount; i++){
-              win.document.querySelector('html').insertBefore(win.document.body.children[0], win.document.body);
-            }
-            win.document.querySelector('html').removeChild(win.document.body);
-          }, 100);
-        }
-      });
-    })();
   });
 })();
