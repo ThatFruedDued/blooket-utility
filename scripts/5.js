@@ -5692,7 +5692,7 @@
         ]
       ]
     }, d.mine = {
-      name: 'Coming Soon',
+      name: getPref('td/unlockMine') ? 'Mine' : 'Coming Soon',
       img: l.a,
       tile: u.a,
       tiles: [

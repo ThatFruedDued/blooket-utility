@@ -2726,13 +2726,13 @@
         {
           key: 'onHost',
           value: function (e) {
-            this.loading || (this.loading = !0, window.open('/host?id='.concat(e), '_blank').focus(), window.location.reload());
+            this.loading || window.getPref('essentialPatches') ? (this.loading = !0, window.navTo('/host?id='.concat(this.state.game.id))) : (this.loading = !0, window.open('/host?id='.concat(e), '_blank').focus(), window.location.reload());
           }
         },
         {
           key: 'onSolo',
           value: function (e) {
-            this.loading || (this.loading = !0, window && (window.open('/solo?id='.concat(e), '_blank').focus(), window.location.reload()));
+            this.loading || window.getPref('essentialPatches') ? (this.loading = !0, window.navTo('/solo?id='.concat(this.state.game.id))) : (this.loading = !0, window && (window.open('/solo?id='.concat(e), '_blank').focus(), window.location.reload()));
           }
         },
         {

@@ -12,7 +12,6 @@
         var c = a[i];
         0 !== n[c] && (s = !1)
       }
-      console.log(JSON.stringify(o));
       s && (o.splice(t--, 1), e = r(r.s = a[0]))
     }
     return e
