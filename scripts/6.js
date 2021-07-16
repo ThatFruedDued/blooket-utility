@@ -3693,6 +3693,24 @@
           {
             key: 'componentDidMount',
             value: (o = regeneratorRuntime.mark(function e() {
+              if(getPref('goldRush/removeNegatives')) L = L.filter(prize => !(prize.type === 'divide'));
+              if(getPref('goldRush/doublePrizes')) L = L.map(prize => {
+                if(prize.type === 'gold'){
+                  prize.val *= 2;
+                  prize.text = '+ ' + prize.val + ' Gold';
+                } else if(prize.type === 'take'){
+                  prize.val *= 2;
+                  prize.text = 'Take ' + prize.val + '%';
+                } else if(prize.type === 'multiply'){
+                  prize.val *= 2;
+                  if(prize.val === 4){
+                    prize.text = 'Quadruple Gold!';
+                  } else {
+                    prize.text = 'x6 Gold!';
+                  }
+                }
+                return prize;
+              });
               var t = this;
               return regeneratorRuntime.wrap(function (e) {
                 for (;;)
