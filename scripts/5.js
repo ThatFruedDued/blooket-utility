@@ -5692,7 +5692,7 @@
         ]
       ]
     }, d.mine = {
-      name: getPref('td/unlockMine') ? 'Mine' : 'Coming Soon',
+      name: getPref('towerDefense/unlockMine') ? 'Mine' : 'Coming Soon',
       img: l.a,
       tile: u.a,
       tiles: [
@@ -5829,7 +5829,7 @@
           2
         ]
       ],
-      locked: getPref('td/unlockMine') ? !1 : !0
+      locked: getPref('towerDefense/unlockMine') ? !1 : !0
     }, t.a = d;
   },
   oTBF: function (e, t, s) {
