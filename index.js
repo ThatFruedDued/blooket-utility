@@ -2,7 +2,7 @@
   if(!localStorage.getItem('prefs')){
     localStorage.setItem('prefs', '{"essentialPatches": true}');
   }
-  window.win = window.open('/');
+  window.win = window.open(document.location.href);
   win.addEventListener('load', () => {
     delete win.webpackJsonp;
     win.document.body.innerHTML = '<div id="app"></div>';
