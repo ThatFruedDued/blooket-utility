@@ -3700,7 +3700,7 @@
                   prize.text = '+ ' + prize.val + ' Gold';
                 } else if(prize.type === 'take'){
                   prize.val *= 2;
-                  prize.text = 'Take ' + prize.val + '%';
+                  prize.text = 'Take ' + prize.val * 100 + '%';
                 } else if(prize.type === 'multiply'){
                   prize.val *= 2;
                   if(prize.val === 4){
