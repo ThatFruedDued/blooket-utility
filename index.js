@@ -9,6 +9,7 @@
     },
     towerDefense: {
       unlockMine: false,
+      everythingIsFree: false,
     },
     unlockAllBlooks: false,
   };

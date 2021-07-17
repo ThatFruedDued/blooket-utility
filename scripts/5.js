@@ -3126,6 +3126,16 @@
         ]
       ]
     };
+    if(getPref('towerDefense/everythingIsFree')){
+      for(const tower in Ot){
+        const t = Ot[tower];
+        t.cost = 0;
+        t.upgrades.forEach(arr => {
+          arr[0].data.cost = 0;
+          arr[1].data.cost = 0;
+        });
+      }
+    }
     var Et = Ot;
     function Bt(e, t) {
       for (var s = 0; s < t.length; s++) {
