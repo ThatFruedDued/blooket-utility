@@ -100,7 +100,8 @@
         'div',
         null,
         e('button', {onClick: () => this.toggleShown()}, this.props.name),
-        e(JSONTree, {obj: this.props.obj, setObj: this.props.setObj, shown: this.state.showing})
+        e(JSONTree, {obj: this.props.obj, setObj: this.props.setObj, shown: this.state.showing}),
+        e('hr', {style: {display: this.state.showing ? 'block' : 'none'}})
       )
     }
   }
