@@ -10,6 +10,7 @@
     towerDefense: {
       unlockMine: false,
     },
+    unlockAllBlooks: false,
   };
   const currentPrefs = JSON.parse(localStorage.getItem('prefs') || '{}');
   const dig = (template, prefs) => {

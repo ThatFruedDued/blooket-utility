@@ -2092,13 +2092,13 @@
         {
           key: 'onHost',
           value: function (e) {
-            this.loading || window.getPref('essentialPatches') ? (this.loading = !0, window.navTo('/host?id='.concat(this.state.game.id))) : (this.loading = !0, window.open('/host?id='.concat(e), '_blank').focus(), window.location.reload());
+            this.loading || getPref('essentialPatches') ? (this.loading = !0, window.navTo('/host?id='.concat(this.state.game.id))) : (this.loading = !0, window.open('/host?id='.concat(e), '_blank').focus(), window.location.reload());
           }
         },
         {
           key: 'onSolo',
           value: function (e) {
-            this.loading || window.getPref('essentialPatches') ? (this.loading = !0, window.navTo('/solo?id='.concat(this.state.game.id))) : (this.loading = !0, window && (window.open('/solo?id='.concat(e), '_blank').focus(), window.location.reload()));
+            this.loading || getPref('essentialPatches') ? (this.loading = !0, window.navTo('/solo?id='.concat(this.state.game.id))) : (this.loading = !0, window && (window.open('/solo?id='.concat(e), '_blank').focus(), window.location.reload()));
           }
         },
         {
@@ -2726,18 +2726,18 @@
         {
           key: 'onHost',
           value: function (e) {
-            this.loading || window.getPref('essentialPatches') ? (this.loading = !0, window.navTo('/host?id='.concat(e))) : (this.loading = !0, window.open('/host?id='.concat(e), '_blank').focus(), window.location.reload());
+            this.loading || getPref('essentialPatches') ? (this.loading = !0, window.navTo('/host?id='.concat(e))) : (this.loading = !0, window.open('/host?id='.concat(e), '_blank').focus(), window.location.reload());
           }
         },
         {
           key: 'onSolo',
           value: function (e) {
-            this.loading || window.getPref('essentialPatches') ? (this.loading = !0, window.navTo('/solo?id='.concat(e))) : (this.loading = !0, window && (window.open('/solo?id='.concat(e), '_blank').focus(), window.location.reload()));
+            this.loading || getPref('essentialPatches') ? (this.loading = !0, window.navTo('/solo?id='.concat(e))) : (this.loading = !0, window && (window.open('/solo?id='.concat(e), '_blank').focus(), window.location.reload()));
           }
         },
         {
           key: 'getIsPlus',
-          value: window.getPref('spoofPlus') ? function(e){this.here && (this.gotPlus = !0, this.plus = !0, e())} : function (e) {
+          value: getPref('spoofPlus') ? function(e){this.here && (this.gotPlus = !0, this.plus = !0, e())} : function (e) {
             var t = this;
             y.a.put('/api/users/plan', {
               name: this.name,

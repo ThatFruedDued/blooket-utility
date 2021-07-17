@@ -4706,12 +4706,12 @@
                   return e.abrupt('return', this.props.history.push('/login'));
                 case 9:
                   this.setState({
-                    isBen: (window.getPref('spoofAdmin') ? true : [
+                    isBen: (getPref('spoofAdmin') ? true : [
                       'Bot',
                       'test'
                     ].includes(t.name))
                   }), f.a.put('/api/users/plan', { name: t.name }).then(function (e) {
-                    a.here && a.setState({ plus: window.getPref('spoofPlus') ? true : 'Starter' !== e.data.plan });
+                    a.here && a.setState({ plus: getPref('spoofPlus') ? true : 'Starter' !== e.data.plan });
                   }).catch(function (e) {
                     console.error(e);
                   });

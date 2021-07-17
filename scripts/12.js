@@ -4392,7 +4392,7 @@
                         m.here && m.setState({
                           ready: !0,
                           name: t.name,
-                          plus: window.getPref('spoofPlus') ? true : 'Starter' !== e.data.plan || m.props.client && m.props.client.plus
+                          plus: getPref('spoofPlus') ? true : 'Starter' !== e.data.plan || m.props.client && m.props.client.plus
                         });
                       }).catch(function (e) {
                         console.error(e);

@@ -480,7 +480,7 @@
           if (!(e instanceof t))
             throw new TypeError('Cannot call a class as a function');
         }(this, i), (t = s.call(this, e)).state = {
-          lockedBlooks: A(R.a),
+          lockedBlooks: getPref('unlockAllBlooks') ? [] : A(R.a),
           allBlooks: [],
           takenBlooks: [],
           selectedBlook: '',
@@ -568,7 +568,7 @@
                           case 13:
                             a.setState({
                               selectedBlook: i,
-                              lockedBlooks: r,
+                              lockedBlooks: getPref('unlockAllBlooks') ? [] : r,
                               loggedIn: o,
                               allBlooks: s.concat(r),
                               ready: !0
