@@ -10,6 +10,7 @@
     towerDefense: {
       unlockMine: false,
       everythingIsFree: false,
+      sellAtFullPrice: false,
     },
     unlockAllBlooks: false,
   };

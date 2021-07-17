@@ -3191,7 +3191,7 @@
           {
             key: 'getSellPrice',
             value: function () {
-              return Math.round(0.8 * this.totalCost);
+              return getPref('towerDefense/sellAtFullPrice') ? this.totalCost : Math.round(0.8 * this.totalCost);
             }
           },
           {
@@ -4731,7 +4731,7 @@
             key: 'buyTower',
             value: function (e) {
               if (this.state.buyTower && this.state.buyTower.gridPos && !this.outsideMap(this.state.buyTower) && (!this.state.isSmall || e)) {
-                var t = this.state.buyTower.cost && this.state.tokens >= this.state.buyTower.cost, s = this.state.buyTower.gridPos && 0 === this.tiles[this.state.buyTower.gridPos.y][this.state.buyTower.gridPos.x];
+                var t = (typeof this.state.buyTower.cost !== 'undefined') && this.state.tokens >= this.state.buyTower.cost, s = this.state.buyTower.gridPos && 0 === this.tiles[this.state.buyTower.gridPos.y][this.state.buyTower.gridPos.x];
                 t && s && (this.towers.push(this.state.buyTower), this.state.buyTower.fullCd > 100 && (this.towers[this.towers.length - 1].fullCd += this.towers.filter(function (e) {
                   return e.fullCd > 100;
                 }).length - 1), this.tiles[this.state.buyTower.gridPos.y][this.state.buyTower.gridPos.x] = 3, this.setState({
