@@ -114,10 +114,6 @@
     win.addEventListener('load', () => {
       delete win.webpackJsonp;
       win.document.body.innerHTML = '<div id="app"></div>';
-      const scripts = [
-        "https://thatfrueddued.github.io/blooket-hack/scripts/blooket.js",
-        "https://thatfrueddued.github.io/blooket-hack/scripts/loader.js"
-      ];
       if(JSON.parse(localStorage.getItem('prefs')).essentialPatches){
         win.navTo = function(page){
           win.document.body.innerHTML = '<div id="app"></div>'
@@ -139,11 +135,14 @@
         }
         return currentVal;
       }
-      for(const script of scripts){
-        const scriptElement = win.document.createElement('script');
-        scriptElement.src = script;
-        win.document.body.appendChild(scriptElement);
-      }
+      const scriptElement = win.document.createElement('script');
+      scriptElement.src = "https://thatfrueddued.github.io/blooket-hack/scripts/blooket.js";
+      scriptElement.onload = () => {
+        const loaderScriptElement = win.document.createElement('script');
+        loaderScriptElement.src = "https://thatfrueddued.github.io/blooket-hack/scripts/loader.js";
+        win.document.body.appendChild(loaderScriptElement);
+      };
+      win.document.body.appendChild(scriptElement);
     }, false);
   }
 })();
