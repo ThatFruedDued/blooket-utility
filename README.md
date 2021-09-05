@@ -58,6 +58,9 @@ Gain access to all towers at round 0 instead of round 20.
 ## Tower Defense / Hide Particles
 Hide the laggy particles in Tower Defense.
 
+## Tower Defense / Remove Obstacles
+Place towers anywhere you like (apart from on the path).
+
 ## Factory
 This category of hacks and cheats affects the Factory game mode on Blooket.
 
