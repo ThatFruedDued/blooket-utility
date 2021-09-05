@@ -128,9 +128,9 @@
           win.document.body.appendChild(scriptElement);
         }
       }
-      win.getPref = function(pref){
+      win.getPref = new win.Function('pref', `
         const prefArr = pref.split('/');
-        let currentVal = win.JSON.parse(win.localStorage.getItem('prefs'));
+        let currentVal = JSON.parse(localStorage.getItem('prefs'));
         for(const val of prefArr){
           if(typeof currentVal[val] !== 'undefined'){
             currentVal = currentVal[val];
@@ -139,7 +139,7 @@
           }
         }
         return currentVal;
-      }
+      `);
       const scriptElement = win.document.createElement('script');
       scriptElement.src = "https://thatfrueddued.github.io/blooket-hack/scripts/blooket.js";
       scriptElement.onload = () => {
