@@ -55,6 +55,9 @@ Sell your towers at the full price you purchased them for.
 ## Tower Defense / Unlock All Towers
 Gain access to all towers at round 0 instead of round 20.
 
+## Tower Defense / Hide Particles
+Hide the laggy particles in Tower Defense.
+
 ## Factory
 This category of hacks and cheats affects the Factory game mode on Blooket.
 

@@ -14,6 +14,7 @@
       everythingIsFree: false,
       sellAtFullPrice: false,
       unlockAllTowers: false,
+      hideParticles: false,
     },
     factory: {
       alwaysGetMegaBot: false,
