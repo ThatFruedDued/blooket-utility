@@ -61,6 +61,12 @@ Hide the laggy particles in Tower Defense.
 ## Tower Defense / Remove Obstacles
 Place towers anywhere you like (apart from on the path).
 
+## Tower Defense / Custom Maps
+This category of hacks and cheats adds custom maps to the Tower Defense game mode on Blooket.
+
+## Tower Defense / Custom Maps / Cheesy Meadow
+In this map, the world is made of cheese. Literally. *Made by Piotr*
+
 ## Factory
 This category of hacks and cheats affects the Factory game mode on Blooket.
 

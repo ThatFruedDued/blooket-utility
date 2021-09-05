@@ -16,6 +16,9 @@
       unlockAllTowers: false,
       hideParticles: false,
       removeObstacles: false,
+      customMaps: {
+        cheesyMeadows: false,
+      },
     },
     factory: {
       alwaysGetMegaBot: false,
