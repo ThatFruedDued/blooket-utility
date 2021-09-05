@@ -48,3 +48,6 @@ Set the prices of all items in Tower Defense to zero gold.
 
 ## Tower Defense / Sell At Full Price
 Sell your towers at the full price you purchased them for.
+
+## Tower Defense / Unlock All Towers
+Gain access to all towers at round 0 instead of round 20.

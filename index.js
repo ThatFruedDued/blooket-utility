@@ -11,6 +11,7 @@
       unlockMine: false,
       everythingIsFree: false,
       sellAtFullPrice: false,
+      unlockAllTowers: false,
     },
     unlockAllBlooks: false,
   };
