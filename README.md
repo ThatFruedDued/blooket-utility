@@ -51,3 +51,9 @@ Sell your towers at the full price you purchased them for.
 
 ## Tower Defense / Unlock All Towers
 Gain access to all towers at round 0 instead of round 20.
+
+## Factory
+This category of hacks and cheats affects the Factory game mode on Blooket.
+
+## Factory / Always Get Mega Bot
+Always pull a Mega Bot after you answer a question correctly in Factory.

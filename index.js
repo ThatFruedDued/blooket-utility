@@ -13,6 +13,9 @@
       sellAtFullPrice: false,
       unlockAllTowers: false,
     },
+    factory: {
+      alwaysGetMegaBot: false,
+    },
     unlockAllBlooks: false,
   };
   const currentPrefs = JSON.parse(localStorage.getItem('prefs') || '{}');
