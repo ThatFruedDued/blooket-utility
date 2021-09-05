@@ -3,6 +3,8 @@
     essentialPatches: true,
     spoofAdmin: false,
     spoofPlus: false,
+    unlockAllBlooks: false,
+    bypassRandomName: false,
     goldRush: {
       removeNegatives: false,
       doublePrizes: false,
@@ -16,7 +18,6 @@
     factory: {
       alwaysGetMegaBot: false,
     },
-    unlockAllBlooks: false,
   };
   const currentPrefs = JSON.parse(localStorage.getItem('prefs') || '{}');
   const dig = (template, prefs) => {

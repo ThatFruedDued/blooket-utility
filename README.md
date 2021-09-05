@@ -28,6 +28,9 @@ Make the Blooket website running on your computer think that you have a Blooket 
 ## Unlock All Blooks
 Unlock all the blooks in Blooket when you play a hosted game. **NOTE:** This does not add all blooks to your account, it just makes them available for you to choose in a live game.
 
+## Bypass Random Name
+Use a custom name, even when the host has "Use Random Names" enabled.
+
 ## Gold Rush
 This category of hacks and cheats affects the Gold Rush game mode on Blooket.
 
