@@ -17,7 +17,7 @@
       hideParticles: false,
       removeObstacles: false,
       customMaps: {
-        cheesyMeadows: false,
+        islands: false,
       },
     },
     factory: {
