@@ -19,6 +19,7 @@
       removeObstacles: false,
       customMaps: {
         islands: false,
+        volatileVolcano: false,
       },
     },
     factory: {

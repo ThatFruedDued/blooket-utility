@@ -70,6 +70,9 @@ This category of hacks and cheats adds custom maps to the Tower Defense game mod
 ## Tower Defense / Custom Maps / Islands
 In this map, there are islands made of cheese. Literally. *Made by Piotr*
 
+## Tower Defense / Custom Maps / Volatile Volcano
+In this map, avoid the dangerous lava while fighting the enemies. *Made by Cheese*
+
 ## Factory
 This category of hacks and cheats affects the Factory game mode on Blooket.
 
