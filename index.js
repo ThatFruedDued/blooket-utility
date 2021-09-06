@@ -5,6 +5,7 @@
     spoofPlus: false,
     unlockAllBlooks: false,
     bypassRandomName: false,
+    skipBoxOpenAnimation: false,
     goldRush: {
       removeNegatives: false,
       doublePrizes: false,

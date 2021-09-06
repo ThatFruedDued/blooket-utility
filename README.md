@@ -31,6 +31,9 @@ Unlock all the blooks in Blooket when you play a hosted game. **NOTE:** This doe
 ## Bypass Random Name
 Use a custom name, even when the host has "Use Random Names" enabled.
 
+## Skip Box Open Animation
+Skip the annoying box opening animation when opening boxes.
+
 ## Gold Rush
 This category of hacks and cheats affects the Gold Rush game mode on Blooket.
 
