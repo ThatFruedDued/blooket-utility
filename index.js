@@ -6,16 +6,15 @@
     unlockAllBlooks: false,
     bypassRandomName: false,
     skipBoxOpenAnimation: false,
+    hideParticles: false,
     goldRush: {
       removeNegatives: false,
       doublePrizes: false,
     },
     towerDefense: {
-      unlockMine: false,
       everythingIsFree: false,
       sellAtFullPrice: false,
       unlockAllTowers: false,
-      hideParticles: false,
       removeObstacles: false,
       customMaps: {
         islands: false,
@@ -38,6 +37,18 @@
     }
   };
   dig(defaultPrefs, currentPrefs);
+
+  function outdatedMessage(pref){
+    return confirm('Found outdated preference ' + pref + ', would you like to remove it (OK for yes, cancel for no)? (select OK if unsure)');
+  }
+
+  if(currentPrefs.towerDefense.hideParticles && outdatedMessage('towerDefense/hideParticles')){
+    delete currentPrefs.towerDefense.hideParticles;
+  }
+  if(currentPrefs.towerDefense.unlockMine && outdatedMessage('towerDefense/unlockMine')){
+    delete currentPrefs.towerDefense.unlockMine;
+  }
+
   localStorage.setItem('prefs', JSON.stringify(currentPrefs));
 
   let res = await fetch('https://unpkg.com/react@17/umd/react.development.js');

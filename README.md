@@ -34,6 +34,9 @@ Use a custom name, even when the host has "Use Random Names" enabled.
 ## Skip Box Open Animation
 Skip the annoying box opening animation when opening boxes.
 
+## Hide Particles
+Hide the laggy particles in Blooket.
+
 ## Gold Rush
 This category of hacks and cheats affects the Gold Rush game mode on Blooket.
 
@@ -57,9 +60,6 @@ Sell your towers at the full price you purchased them for.
 
 ## Tower Defense / Unlock All Towers
 Gain access to all towers at round 0 instead of round 20.
-
-## Tower Defense / Hide Particles
-Hide the laggy particles in Tower Defense.
 
 ## Tower Defense / Remove Obstacles
 Place towers anywhere you like (apart from on the path).
