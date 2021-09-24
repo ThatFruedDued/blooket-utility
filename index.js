@@ -7,6 +7,7 @@
     bypassRandomName: false,
     skipBoxOpenAnimation: false,
     hideParticles: false,
+    alwaysThreeTimesTokens: false,
     goldRush: {
       removeNegatives: false,
       doublePrizes: false,

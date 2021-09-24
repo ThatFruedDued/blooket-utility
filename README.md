@@ -37,6 +37,9 @@ Skip the annoying box opening animation when opening boxes.
 ## Hide Particles
 Hide the laggy particles in Blooket.
 
+## Always Three Times Tokens
+Set all the token multiplier options to 3x.
+
 ## Gold Rush
 This category of hacks and cheats affects the Gold Rush game mode on Blooket.
 
