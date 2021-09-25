@@ -71,9 +71,10 @@
     render() {
       return e(
         'div',
-        {style: {height: '100vh', width: '100vw', position: 'absolute', top: '0', left: '0'}},
-        e('button', {style: {}, onClick: launch}, 'Launch Hack'),
-        e(JSONTree, {setObj: obj => this.setObj(obj), obj: JSON.parse(localStorage.getItem('prefs')), shown: true})
+        {style: {height: '100vh', width: '100vw', position: 'absolute', top: '0', left: '0', backgroundColor: 'black'}},
+        e('p', {style: {display: 'inline-block', color: 'white', fontFamily: "'Roboto Mono', monospace", margin: '5px 4px', cursor: 'pointer'}, onClick: launch}, 'Launch Hack'),
+        e(JSONTree, {setObj: obj => this.setObj(obj), obj: JSON.parse(localStorage.getItem('prefs')), shown: true}),
+        e('style', null, "@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');")
       )
     }
   }
@@ -91,7 +92,7 @@
         if(typeof this.props.obj[elem] === 'boolean') children.push(e(JSONBool, {checked: this.props.obj[elem], setVal: val => this.setVal(elem, val), name: camelToSpaceCase(elem)}));
         if(typeof this.props.obj[elem] === 'object') children.push(e(TreeContainer, {obj: this.props.obj[elem], setObj: val => this.setVal(elem, val), name: camelToSpaceCase(elem)}));
       }
-      return e('div', {style: {display: this.props.shown ? 'block' : 'none'}}, ...children);
+      return e('div', {style: {display: this.props.shown ? 'block' : 'none', borderLeft: '4px solid lightgray', margin: '5px 2px'}}, ...children);
     }
   }
 
@@ -99,9 +100,8 @@
     render() {
       return e(
         'div',
-        {style: {width: '100vw'}},
-        e('p', {style: {display: 'inline-block'}}, this.props.name),
-        e('input', {style: {display: 'inline-block'}, type: 'checkbox', checked: this.props.checked, onChange: () => this.props.setVal(!this.props.checked)})
+        {style: {width: '100%'}},
+        e('p', {style: {display: 'inline-block', color: this.props.checked ? 'green' : 'red', fontFamily: "'Roboto Mono', monospace", margin: '5px 4px', cursor: 'pointer'}, onClick: () => this.props.setVal(!this.props.checked)}, this.props.name)
       )
     }
   }
@@ -123,9 +123,8 @@
       return e(
         'div',
         null,
-        e('button', {onClick: () => this.toggleShown()}, this.props.name),
-        e(JSONTree, {obj: this.props.obj, setObj: this.props.setObj, shown: this.state.showing}),
-        e('hr', {style: {display: this.state.showing ? 'block' : 'none'}})
+        e('p', {style: {display: 'inline-block', color: 'white', fontFamily: "'Roboto Mono', monospace", margin: '5px 4px', cursor: 'pointer'}, onClick: () => this.toggleShown()}, this.props.name),
+        e(JSONTree, {obj: this.props.obj, setObj: this.props.setObj, shown: this.state.showing})
       )
     }
   }
