@@ -89,3 +89,9 @@ This category of hacks and cheats affects the Factory game mode on Blooket.
 
 ## Factory / Always Get Mega Bot
 Always pull a Mega Bot after you answer a question correctly in Factory **if the Mega Bot has been unlocked. NOTE:** The Mega Bot is not unlocked right when the game starts. I believe you must collect a certain amount of money before it is unlocked and you can start using it, but I'm not sure what the criteria is for unlocking the Mega Bot.
+
+## Crypto Hack
+This category of hacks and cheats affects the Crypto Hack game mode on Blooket.
+
+## Crypto Hack / Passwords Always Correct
+Always successfully guess the correct password in Crypto Hack, no matter what you choose.

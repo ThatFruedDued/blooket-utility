@@ -26,6 +26,9 @@
     factory: {
       alwaysGetMegaBot: false,
     },
+    cryptoHack: {
+      passwordsAlwaysCorrect: true,
+    },
   };
   const friendlyNames = {
     essentialPatches: 'Essential Patches',
@@ -49,7 +52,9 @@
     'towerDefense/customMaps/islands': 'Islands (Piotr)',
     'towerDefense/customMaps/volatileVolcano': 'Volatile Volcano (Cheese)',
     factory: 'Factory',
-    'factory/alwaysGetMegaBot': 'Always Get Mega Bot'
+    'factory/alwaysGetMegaBot': 'Always Get Mega Bot',
+    cryptoHack: 'Crypto Hack',
+    'cryptoHack/passwordsAlwaysCorrect': 'Passwords Always Correct'
   }
   const currentPrefs = JSON.parse(localStorage.getItem('prefs') || '{}');
   const dig = (template, prefs) => {
@@ -94,7 +99,6 @@
   (new Function(text))();
 
   const e = React.createElement;
-  const camelToSpaceCase = str => (str.charAt(0).toUpperCase() + str.replace(/[A-Z]/g, letter => ` ${letter}`).substr(1));
 
   class App extends React.Component {
     setObj(obj) {
