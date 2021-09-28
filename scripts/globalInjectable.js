@@ -1,3 +1,1 @@
-if(getPref('devTest')){
-  console.log('This is a test.');
-}
+// nothing here yet, will be adding some fun stuff soon :)

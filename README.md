@@ -16,6 +16,11 @@ Once you see the interface after you click the bookmarklet, toggle your desired 
 
 # Features
 
+# Injectables
+The easiest way to add your own (or other community members') features and code to this script. Click "Add Injectable", enter the URL, and be on your way!
+
+# Built-In Prefs and Scripts
+
 ## Essential Patches
 Adds some essential patches to the game's code to allow the script to remain executing. Keep this enabled unless you really, *really* know what you are doing.
 
@@ -42,6 +47,9 @@ Set all the token multiplier options to 3x.
 
 ## Gold Rush
 This category of hacks and cheats affects the Gold Rush game mode on Blooket.
+
+## All Answers Correct
+Make all possible answers correct all the time.
 
 ## Gold Rush / Remove Negatives
 Remove the negative rewards from Gold Rush.
