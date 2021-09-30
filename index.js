@@ -281,6 +281,230 @@
         window.globalEventTarget.dispatchEvent(e);
       }
 
+      function initObjects(){
+        window.ModMenu = {
+          initialized: false,
+          initializing: false,
+          init: async function(){
+            if(!ModMenu.initialized && !ModMenu.initializing){
+              ModMenu.initializing = true;
+              let res = await fetch('https://unpkg.com/react@17/umd/react.development.js');
+              let text = await res.text();
+              (new Function(text))();
+              res = await fetch('https://unpkg.com/react-dom@17/umd/react-dom.development.js');
+              text = await res.text();
+              (new Function(text))();
+
+              ModMenu.menuDiv = document.createElement('div');
+              ModMenu.divStyle = 'position: fixed; background-color: black; left: 0; bottom: 0; height: 35vh; width: 35vw; display: block; z-index: 99999; overflow-y: auto';
+              ModMenu.menuDiv.style = ModMenu.divStyle;
+              document.body.appendChild(ModMenu.menuDiv);
+
+              ModMenu.setShowing = function(display){
+                if(display){
+                  ModMenu.divStyle = ModMenu.divStyle.replaceAll('display: none', 'display: block');
+                  ModMenu.menuDiv.style = ModMenu.divStyle;
+                } else {
+                  ModMenu.divStyle = ModMenu.divStyle.replaceAll('display: block', 'display: none');
+                  ModMenu.menuDiv.style = ModMenu.divStyle;
+                }
+              }
+
+              ModMenu.toggleShowing = function(){
+                if(ModMenu.divStyle.includes('display: none')){
+                  ModMenu.divStyle = ModMenu.divStyle.replaceAll('display: none', 'display: block');
+                  ModMenu.menuDiv.style = ModMenu.divStyle;
+                } else {
+                  ModMenu.divStyle = ModMenu.divStyle.replaceAll('display: block', 'display: none');
+                  ModMenu.menuDiv.style = ModMenu.divStyle;
+                }
+              }
+
+              window.addEventListener('keydown', e => {
+                if(e.key === "|") ModMenu.toggleShowing();
+              });
+
+              class MenuButton {
+                constructor(name, func){
+                  this.name = name;
+                  this.func = func;
+
+                  this.oldName = name;
+
+                  setInterval(() => {
+                    if(this.name !== this.oldName && this.onChange){
+                      this.oldName = this.name;
+                      this.onChange();
+                    }
+                  }, 10);
+                }
+              }
+
+              class MenuBool {
+                constructor(name, value){
+                  this.name = name;
+                  this.value = value;
+
+                  this.oldName = name;
+                  this.oldValue = value;
+
+                  setInterval(() => {
+                    if((this.name !== this.oldName || this.value !== this.oldValue) && this.onChange){
+                      this.oldName = this.name;
+                      this.oldValue = this.value;
+                      this.onChange();
+                    }
+                  }, 10);
+                }
+
+                toggle() {
+                  this.value = !this.value;
+                }
+              }
+
+              class MenuTree {
+                constructor(name, arr){
+                  this.name = name;
+                  this.internalArr = arr;
+
+                  this.arr = new Proxy(this.internalArr, {
+                    apply: function(target, thisArg, argumentList) {
+                      return thisArg[target].apply(this, argumentList);
+                    },
+                    deleteProperty: function(target, property) {
+                      this.onChange && this.onChange();
+                      return true;
+                    },
+                    set: function(target, property, value, receiver) {      
+                      target[property] = value;
+                      this.onChange && this.onChange();
+                      return true;
+                    }
+                  });;
+
+                  this.oldName = name;
+
+                  setInterval(() => {
+                    if(this.name !== this.oldName && this.onChange){
+                      this.oldName = this.name;
+                      this.onChange();
+                    }
+                  }, 10);
+                }
+              }
+
+              ModMenu.MenuButton = MenuButton;
+              ModMenu.MenuBool = MenuBool;
+              ModMenu.MenuTree = MenuTree;
+
+              ModMenu.menu = new MenuTree('Mod Menu', []);
+
+              const e = React.createElement;
+
+              class ModMenuApp extends React.Component {
+                constructor(props){
+                  super(props);
+                }
+
+                render() {
+                  return e(
+                    'div',
+                    null,
+                    e(ModMenuTree, {obj: ModMenu.menu})
+                  );
+                }
+              }
+
+              class ModMenuTree extends React.Component {
+                constructor(props){
+                  super(props);
+                  this.state = {showing: false};
+                }
+
+                toggleShown(){
+                  this.setState(state => {
+                    state.showing = !state.showing;
+                    return state;
+                  });
+                }
+
+                render() {
+                  const children = [];
+                  for(const child of this.props.obj.arr){
+                    if(child instanceof MenuButton){
+                      children.push(e(
+                        ModMenuButton,
+                        {btn: child}
+                      ));
+                    } else if(child instanceof MenuBool){
+                      children.push(e(
+                        ModMenuBool,
+                        {bool: child}
+                      ));
+                    } else if(child instanceof MenuTree){
+                      children.push(e(
+                        ModMenuTree,
+                        {obj: child}
+                      ));
+                    }
+                  }
+                  return e(
+                    'div',
+                    null,
+                    e('p', {style: {display: 'inline-block', color: 'white', fontFamily: "'Roboto Mono', monospace", margin: '5px 4px', cursor: 'pointer'}, onClick: () => this.toggleShown()}, this.props.obj.name),
+                    e('div', {style: {display: this.state.showing ? 'block' : 'none', borderLeft: '4px solid lightgray', margin: '5px 2px'}}, ...children)
+                  )
+                }
+
+                componentDidMount() {
+                  this.props.obj.onChange = () => this.forceUpdate();
+                }
+              }
+
+              class ModMenuButton extends React.Component {
+                render() {
+                  return e(
+                    'div',
+                    {style: {width: '100%'}},
+                    e('p', {style: {display: 'inline-block', color: 'blue', fontFamily: "'Roboto Mono', monospace", margin: '5px 4px', cursor: 'pointer'}, onClick: () => this.props.btn.func()}, this.props.btn.name)
+                  )
+                }
+
+                componentDidMount() {
+                  this.props.btn.onChange = () => this.forceUpdate();
+                }
+              }
+
+              class ModMenuBool extends React.Component {
+                render() {
+                  return e(
+                    'div',
+                    {style: {width: '100%'}},
+                    e('p', {style: {display: 'inline-block', color: this.props.bool.value ? 'green' : 'red', fontFamily: "'Roboto Mono', monospace", margin: '5px 4px', cursor: 'pointer'}, onClick: () => this.props.bool.toggle()}, this.props.bool.name)
+                  )
+                }
+
+                componentDidMount() {
+                  this.props.bool.onChange = () => this.forceUpdate();
+                }
+              }
+
+              ReactDOM.render(e(ModMenuApp), ModMenu.menuDiv);
+
+              ModMenu.initialized = true;
+            } else if(ModMenu.initializing){
+              await new Promise(r => {
+                setInterval(() => {
+                  if(ModMenu.initialized){
+                    r();
+                  }
+                }, 100);
+              });
+            }
+          },
+        };
+      }
+
       win.eval(getPref.toString());
       win.eval(setPref.toString());
       win.eval(delPref.toString());
@@ -288,6 +512,10 @@
       win.eval(delFormat.toString());
       win.eval(dispatch.toString());
       win.eval(listen.toString());
+
+      const srcArr = initObjects.toString().split('\n');
+      srcArr.shift(); srcArr.pop();
+      win.eval(srcArr.join('\n'));
 
       const scriptElement = win.document.createElement('script');
       scriptElement.src = "https://thatfrueddued.github.io/blooket-hack/scripts/blooket.js";

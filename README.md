@@ -19,13 +19,16 @@ Once you see the interface after you click the bookmarklet, toggle your desired 
 # Injectables
 The easiest way to add your own (or other community members') features and code to this script. Click "Add Injectable", enter the URL, and be on your way!
 
+# Mod Menu
+Some scripts and injectables may come with a Mod Menu that appears in the bottom left corner of the screen. To show or hide the mod menu, do `shift` + `\` on your keyboard. Please open an issue or a pull request if you have an idea of how to bring the show/hide functionality to mobile.
+
 # Built-In Prefs and Scripts
 
 ## Essential Patches
 Adds some essential patches to the game's code to allow the script to remain executing. Keep this enabled unless you really, *really* know what you are doing.
 
 ## Spoof Admin
-Make the Blooket website running on your computer think that you are an administrator of Blooket. **NOTE:** In most, if not all cases, this does not grant you any extra features due to server-side checks.
+Make the Blooket website running on your computer think that you are an administrator of Blooket. **NOTE:** In most cases, this does not grant you any extra features due to server-side checks.
 
 ## Spoof Plus
 Make the Blooket website running on your computer think that you have a Blooket Plus subscription. **NOTE:** In some cases, this does not grant you any extra features due to server-side checks.
