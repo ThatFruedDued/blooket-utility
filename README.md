@@ -17,7 +17,7 @@ Once you see the interface after you click the bookmarklet, toggle your desired 
 # Features
 
 # Injectables
-The easiest way to add your own (or other community members') features and code to this script. Click "Add Injectable", enter the URL, and be on your way!
+The easiest way to add your own (or other community members') features and code to this script. Click "Add Injectable", enter the URL, and be on your way! If you want to create your own injectables, read the guide at <https://thatfrueddued.github.io/blooket-hack/guides/injectables>.
 
 # Mod Menu
 Some scripts and injectables may come with a Mod Menu that appears in the bottom left corner of the screen. To show or hide the mod menu, do `shift` + `\` on your keyboard. Please open an issue or a pull request if you have an idea of how to bring the show/hide functionality to mobile.
