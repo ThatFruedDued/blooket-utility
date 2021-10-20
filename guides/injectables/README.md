@@ -14,10 +14,10 @@ Then, scroll down and click the green "Commit new file" button. Next, go to the 
 ![GitHub pages](resources/pages.png)  
 Now, go back to the "Code" tab at the top, click on the file you just created, and click the pencil button to edit it.  
 ![Editing the new file](resources/edit.png)  
-Nice! Now, let's add your injectable to the ThatFruedDued Blooket Hack.
+Nice! Now, let's add your injectable to the ThatFruedDued Blooket Utility.
 
 ## Adding Your Injectable (GitHub)
-Go to <https://www.blooket.com> and enable the ThatFruedDued Blooket Hack. Then, click "Add Injectable" at the top of the page. Paste the GitHub Pages URL, then type the name of your script. For example, my repository's URL was `https://thatfrueddued.github.io/cool-injectables/`, and my script name was `my-first-injectable.js`, so my complete injectable URL would be `https://thatfrueddued.github.io/cool-injectables/my-first-injectable.js`. Then, you can click on "Injectables" in the Blooket hack and enable yours.
+Go to <https://www.blooket.com> and enable the ThatFruedDued Blooket Utility. Then, click "Add Injectable" at the top of the page. Paste the GitHub Pages URL, then type the name of your script. For example, my repository's URL was `https://thatfrueddued.github.io/cool-injectables/`, and my script name was `my-first-injectable.js`, so my complete injectable URL would be `https://thatfrueddued.github.io/cool-injectables/my-first-injectable.js`. Then, you can click on "Injectables" in the Blooket Utility and enable yours.
 
 ## Coding the Injectable
 Injectables are always loaded after the original Blooket page has been removed and before the new Blooket page has been injected. This phase visually shows up as a brief white screen after the tab has loaded. Be sure to either not rely on the Blooket GUI or detect when the Blooket GUI launches to run code. When your code has been injected, several methods will already have been injected to assist you in development. Prefs are storage for different settings and toggles for your injectable. Note that prefs can be any `JSON.stringify`-able type, but only objects and bools will appear in the prefs menu.
@@ -38,10 +38,10 @@ Sets how a preference will appear in the prefs menu. Ex: `setFormat('coolInjecta
 Removes data on how a preference will appear in the prefs menu. Ex: `delFormat('coolInjectables/myPref')`, `delFormat('coolInjectables')`
 
 ### `listen` and `dispatch`
-Easily shares data between different parts of the hack. Ex: `listen('coolInjectablesMsgs', m => console.log(m))` to start listening, `dispatch('Hello!', 'coolInjectablesMsgs')` to dispatch the message to all listeners
+Easily shares data between different parts of the utility. Ex: `listen('coolInjectablesMsgs', m => console.log(m))` to start listening, `dispatch('Hello!', 'coolInjectablesMsgs')` to dispatch the message to all listeners
 
 ## The `ModMenu`
-The `ModMenu` is a way to easily create consistent GUIs across the hack.
+The `ModMenu` is a way to easily create consistent GUIs across the utility.
 
 ### `ModMenu.init`
 Must be called on each injectable before doing anything with the `ModMenu` on that injectable. Ex: `await ModMenu.init()`
