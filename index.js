@@ -518,10 +518,10 @@
       win.eval(srcArr.join('\n'));
 
       const scriptElement = win.document.createElement('script');
-      scriptElement.src = "https://thatfrueddued.github.io/blooket-utility/scripts/blooket.js";
+      scriptElement.src = "https://raw.githubusercontent.com/ThatFruedDued/blooket-utility/master/scripts/blooket.js";
       scriptElement.onload = async () => {
         const injectables = JSON.parse(localStorage.getItem('injectables'));
-        injectables['https://thatfrueddued.github.io/blooket-utility/scripts/globalInjectable.js'] = true;
+        injectables['https://raw.githubusercontent.com/ThatFruedDued/blooket-utility/master/scripts/globalInjectable.js'] = true;
         for(const script in injectables){
           if(injectables[script]){
             const injectable = win.document.createElement('script');
@@ -531,7 +531,7 @@
           }
         }
         const loaderScriptElement = win.document.createElement('script');
-        loaderScriptElement.src = "https://thatfrueddued.github.io/blooket-utility/scripts/loader.js";
+        loaderScriptElement.src = "https://raw.githubusercontent.com/ThatFruedDued/blooket-utility/master/scripts/loader.js";
         win.document.body.appendChild(loaderScriptElement);
       };
       win.document.body.appendChild(scriptElement);
