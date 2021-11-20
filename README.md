@@ -1,5 +1,9 @@
 # ThatFruedDued's Blooket Utility
 
+## Status
+
+The ThatFruedDued Blooket Utility is temporarily discontinued due to major updates to Blooket and my lack of time. I hope to find time to work on this in the future. In the meantime, you can use [glixzzy's Blooket scripts](https://github.com/glixzzy/blooket-hack).
+
 ## What is this?
 
 This is a utility for the popular online game, [Blooket](https://www.blooket.com). It is currently under heavy development. It uses an advanced unique system that loads custom modified source code for Blooket. You can find these scripts in the `scripts` folder.
@@ -7,7 +11,7 @@ This is a utility for the popular online game, [Blooket](https://www.blooket.com
 ## How do I use this?
 
 Use this bookmarklet on the Blooket website:
-`javascript:fetch('https://thatfrueddued.github.io/blooket-utility/index.js').then(r=>r.text()).then(t=>(new Function(t))())`
+`javascript:onmessage=m=>eval(m.data);open("https://thatfrueddued.github.io/blooket-utility/wloader/index.html");void 0`
 
 ## How do I make a bookmarklet?
 
