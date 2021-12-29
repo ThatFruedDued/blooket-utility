@@ -5,7 +5,11 @@ if (!localStorage.getItem("blooket-utility"))
   );
 const handler = {
   get: (obj, prop) => {
-    if (['[object Object]', '[object Array]'].indexOf(Object.prototype.toString.call(obj[prop])) > -1) {
+    if (
+      ["[object Object]", "[object Array]"].indexOf(
+        Object.prototype.toString.call(obj[prop])
+      ) > -1
+    ) {
       return new Proxy(obj[prop], handler);
     }
     return obj[prop];
@@ -53,9 +57,23 @@ Object.defineProperty(XMLHttpRequest.prototype, "withCredentials", {
   },
 });
 
+Object.defineProperty(HTMLImageElement.prototype, "src", {
+  get: function () {
+    return this._src;
+  },
+  set: function (d) {
+    this._src = d;
+    if (d.startsWith("/")) {
+      this.setAttribute("src", (blooketUtility.corsProxyUrl || "https://corsbyp.herokuapp.com/") + "https://www.blooket.com" + d);
+    } else {
+      this.setAttribute("src", d);
+    }
+  },
+});
+
 if (blooketUtility.injectables) {
   for (const injectable of blooketUtility.injectables) {
-    if(injectable.enabled) {
+    if (injectable.enabled) {
       for (const script of injectable.scripts) {
         const scriptElement = document.createElement("script");
         scriptElement.src = script;
