@@ -105,7 +105,7 @@ class App extends React.Component {
     if(this.state.injectableToRemove.cleanupScript) {
       const scriptElement = document.createElement("script");
       scriptElement.src = this.state.injectableToRemove.cleanupScript;
-      scriptElement.addEventListener("load", this.forceUpdate);
+      scriptElement.addEventListener("load", () => this.forceUpdate());
       document.body.appendChild(scriptElement);
     }
     this.forceUpdate();
@@ -144,7 +144,7 @@ class App extends React.Component {
       if(injectable.setupScript) {
         const scriptElement = document.createElement("script");
         scriptElement.src = injectable.setupScript;
-        scriptElement.addEventListener("load", this.forceUpdate);
+        scriptElement.addEventListener("load", () => this.forceUpdate());
         document.body.appendChild(scriptElement);
       }
       return true;
