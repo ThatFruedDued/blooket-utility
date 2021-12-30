@@ -105,6 +105,7 @@ class App extends React.Component {
     if(this.state.injectableToRemove.cleanupScript) {
       const scriptElement = document.createElement("script");
       scriptElement.src = this.state.injectableToRemove.cleanupScript;
+      scriptElement.addEventListener("load", this.forceUpdate);
       document.body.appendChild(scriptElement);
     }
     this.forceUpdate();
@@ -140,6 +141,12 @@ class App extends React.Component {
     ) {
       injectable.enabled = true;
       blooketUtility.injectables.push(injectable);
+      if(injectable.setupScript) {
+        const scriptElement = document.createElement("script");
+        scriptElement.src = injectable.setupScript;
+        scriptElement.addEventListener("load", this.forceUpdate);
+        document.body.appendChild(scriptElement);
+      }
       return true;
     }
     return false;
@@ -186,9 +193,6 @@ class App extends React.Component {
             <Typography>Prefs</Typography>
           </AccordionSummary>
           <AccordionDetails>
-            {
-              //<Typography>No prefs</Typography>
-            }
             {Object.keys(blooketUtility.prefs).length ? Object.values(blooketUtility.prefs).map((element) => {
               const key = JSON.stringify(element);
               if (
