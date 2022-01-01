@@ -40,18 +40,9 @@
   Object.defineProperty(Object.prototype, "baseURL", {
     get: function () {
       return (
-        (blooketUtility.corsProxyUrl || "https://corsbyp.herokuapp.com/") +
+        (blooketUtility.corsProxyUrl || "https://blooket-utility-cors.herokuapp.com/") +
         "https://api.blooket.com"
       );
-    },
-    set: function () {
-      return;
-    },
-  });
-
-  Object.defineProperty(XMLHttpRequest.prototype, "withCredentials", {
-    get: function () {
-      return false;
     },
     set: function () {
       return;
