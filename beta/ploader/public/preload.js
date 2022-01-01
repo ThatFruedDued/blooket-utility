@@ -37,10 +37,26 @@
     handler
   );
 
+  XMLHttpRequest.prototype._send = XMLHttpRequest.prototype.send;
+  XMLHttpRequest.prototype.send = function () {
+    if (blooketUtility.cookie)
+      this.setRequestHeader("bu-cookie", blooketUtility.cookie);
+    this.addEventListener("readystatechange", (e) => {
+      if (
+        this.readyState === this.DONE &&
+        this.getResponseHeader("bu-set-cookie")
+      ) {
+        blooketUtility.cookie = this.getResponseHeader("bu-set-cookie");
+      }
+    });
+    this._send(...arguments);
+  };
+
   Object.defineProperty(Object.prototype, "baseURL", {
     get: function () {
       return (
-        (blooketUtility.corsProxyUrl || "https://blooket-utility-cors.herokuapp.com/") +
+        (blooketUtility.corsProxyUrl ||
+          "https://blooket-utility-cors.herokuapp.com/") +
         "https://api.blooket.com"
       );
     },
@@ -58,7 +74,8 @@
       if (d.startsWith("/")) {
         this.setAttribute(
           "src",
-          (blooketUtility.corsProxyUrl || "https://corsbyp.herokuapp.com/") +
+          (blooketUtility.corsProxyUrl ||
+            "https://blooket-utility-cors.herokuapp.com/") +
             "https://www.blooket.com" +
             d
         );
