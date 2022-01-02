@@ -18,6 +18,9 @@ import {
   FormControlLabel,
   Checkbox,
   TextField,
+  Grid,
+  Slider,
+  Input,
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 
@@ -102,7 +105,7 @@ class App extends React.Component {
       blooketUtility.injectables.indexOf(this.state.injectableToRemove),
       1
     );
-    if(this.state.injectableToRemove.cleanupScript) {
+    if (this.state.injectableToRemove.cleanupScript) {
       const scriptElement = document.createElement("script");
       scriptElement.src = this.state.injectableToRemove.cleanupScript;
       scriptElement.addEventListener("load", () => this.forceUpdate());
@@ -141,7 +144,7 @@ class App extends React.Component {
     ) {
       injectable.enabled = true;
       blooketUtility.injectables.push(injectable);
-      if(injectable.setupScript) {
+      if (injectable.setupScript) {
         const scriptElement = document.createElement("script");
         scriptElement.src = injectable.setupScript;
         scriptElement.addEventListener("load", () => this.forceUpdate());
@@ -185,115 +188,132 @@ class App extends React.Component {
         left={0}
         overflow="auto"
       >
-        <Typography variant="h6" sx={{ m: 1 }}>
-          Blooket Utility Configurator
-        </Typography>
-        <Accordion>
-          <AccordionSummary expandIcon={<Icon>expand_more</Icon>}>
-            <Typography>Prefs</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            {Object.keys(blooketUtility.prefs).length ? Object.values(blooketUtility.prefs).map((element) => {
-              const key = JSON.stringify(element);
-              if (
-                typeof element.value === "boolean" ||
-                element.value instanceof Boolean
-              ) {
-                return <BooleanPref elevated pref={element} key={key} />;
-              } else if (element.value instanceof Object) {
-                return <ObjectPref elevated pref={element} key={key} />;
-              }
-              return null;
-            }) : <Typography>No prefs</Typography>}
-          </AccordionDetails>
-        </Accordion>
-        <Accordion>
-          <AccordionSummary expandIcon={<Icon>expand_more</Icon>}>
-            <Typography sx={{ width: "33%", flexShrink: 0 }}>
-              Injectables
-            </Typography>
-            <Typography sx={{ color: "text.secondary" }}>
-              {blooketUtility.injectables.length} injectable
-              {blooketUtility.injectables.length === 1 ? "" : "s"} installed
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            {blooketUtility.injectables.length ? (
-              blooketUtility.injectables.map((injectable) => (
-                <Injectable
-                  injectable={injectable}
-                  openRemoveDialog={this.openRemoveDialog}
-                  toggleInjectable={this.toggleInjectable}
-                  key={injectable.url}
-                />
-              ))
-            ) : (
-              <Typography>
-                No injectables are installed. Try clicking "Add Injectable"
-                below.
+        <Box sx={{ m: 1 }}>
+          <Typography variant="h5">
+            <b>Blooket Utility Configurator</b>
+          </Typography>
+          <Accordion>
+            <AccordionSummary expandIcon={<Icon>expand_more</Icon>}>
+              <Typography>Prefs</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              {Object.keys(blooketUtility.prefs).length ? (
+                Object.values(blooketUtility.prefs).map((element) => {
+                  const key = JSON.stringify(element);
+                  if (
+                    typeof element.value === "boolean" ||
+                    element.value instanceof Boolean
+                  ) {
+                    return <BooleanPref elevated pref={element} key={key} />;
+                  } else if (
+                    typeof element.value === "number" ||
+                    element.value instanceof Number
+                  ) {
+                    return (
+                      <NumberPref
+                        elevated={!this.props.elevated}
+                        pref={element}
+                        key={key}
+                      />
+                    );
+                  } else if (element.value instanceof Object) {
+                    return <ObjectPref elevated pref={element} key={key} />;
+                  }
+                  return null;
+                })
+              ) : (
+                <Typography>No prefs</Typography>
+              )}
+            </AccordionDetails>
+          </Accordion>
+          <Accordion>
+            <AccordionSummary expandIcon={<Icon>expand_more</Icon>}>
+              <Typography sx={{ width: "33%", flexShrink: 0 }}>
+                Injectables
               </Typography>
-            )}
-            <Button
-              variant="contained"
-              sx={{ my: 1 }}
-              onClick={this.addInjectable}
-            >
-              Add Injectable
-            </Button>
-          </AccordionDetails>
-        </Accordion>
-        <Dialog
-          open={this.state.removeDialogOpen}
-          onClose={this.handleRemoveDialogClose}
-        >
-          <DialogTitle>Remove injectable?</DialogTitle>
-          <DialogContent>
-            <DialogContentText>
-              The injectable "{this.state.injectableToRemove.title}" will be
-              removed and its cleanup script will be executed (if it has one).
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={this.handleRemoveDialogClose}>Cancel</Button>
-            <Button onClick={this.confirmRemoveInjectable} color="error">
-              Remove
-            </Button>
-          </DialogActions>
-        </Dialog>
-        <Dialog
-          open={this.state.addInjectableDialogOpen}
-          onClose={this.handleAddInjectableDialogClose}
-        >
-          <DialogTitle>Add Injectable</DialogTitle>
-          <DialogContent>
-            <DialogContentText>
-              Add an injectable from a URL. The details of the injectable will
-              be fetched and added to the Blooket Utility. You may need to run
-              the injectable once to view its prefs.
-            </DialogContentText>
-            <TextField
-              variant="filled"
-              label="URL"
-              sx={{ mt: 1, width: "100%" }}
-              value={this.state.injectableURL}
-              onChange={this.onInjectableURLChange}
-              error={Boolean(this.state.addInjectableError)}
-              helperText={this.state.addInjectableError}
-            />
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={this.handleAddInjectableDialogClose}>
-              Cancel
-            </Button>
-            <LoadingButton
-              loading={this.state.addInjectableLoading}
-              color="success"
-              onClick={this.onInjectableAddClicked}
-            >
-              Add
-            </LoadingButton>
-          </DialogActions>
-        </Dialog>
+              <Typography sx={{ color: "text.secondary" }}>
+                {blooketUtility.injectables.length} injectable
+                {blooketUtility.injectables.length === 1 ? "" : "s"} installed
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              {blooketUtility.injectables.length ? (
+                blooketUtility.injectables.map((injectable) => (
+                  <Injectable
+                    injectable={injectable}
+                    openRemoveDialog={this.openRemoveDialog}
+                    toggleInjectable={this.toggleInjectable}
+                    key={injectable.url}
+                  />
+                ))
+              ) : (
+                <Typography>
+                  No injectables are installed. Try clicking "Add Injectable"
+                  below.
+                </Typography>
+              )}
+              <Button
+                variant="contained"
+                sx={{ my: 1, mt: 2 }}
+                onClick={this.addInjectable}
+              >
+                Add Injectable
+              </Button>
+            </AccordionDetails>
+          </Accordion>
+          <Dialog
+            open={this.state.removeDialogOpen}
+            onClose={this.handleRemoveDialogClose}
+          >
+            <DialogTitle>Remove injectable?</DialogTitle>
+            <DialogContent>
+              <DialogContentText>
+                The injectable "{this.state.injectableToRemove.title}" will be
+                removed and its cleanup script will be executed (if it has one).
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={this.handleRemoveDialogClose}>Cancel</Button>
+              <Button onClick={this.confirmRemoveInjectable} color="error">
+                Remove
+              </Button>
+            </DialogActions>
+          </Dialog>
+          <Dialog
+            open={this.state.addInjectableDialogOpen}
+            onClose={this.handleAddInjectableDialogClose}
+          >
+            <DialogTitle>Add Injectable</DialogTitle>
+            <DialogContent>
+              <DialogContentText>
+                Add an injectable from a URL. The details of the injectable will
+                be fetched and added to the Blooket Utility. You may need to run
+                the injectable once to view its prefs.
+              </DialogContentText>
+              <TextField
+                variant="filled"
+                label="URL"
+                sx={{ mt: 1, width: "100%" }}
+                value={this.state.injectableURL}
+                onChange={this.onInjectableURLChange}
+                error={Boolean(this.state.addInjectableError)}
+                helperText={this.state.addInjectableError}
+              />
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={this.handleAddInjectableDialogClose}>
+                Cancel
+              </Button>
+              <LoadingButton
+                loading={this.state.addInjectableLoading}
+                variant="contained"
+                onClick={this.onInjectableAddClicked}
+              >
+                Add
+              </LoadingButton>
+            </DialogActions>
+          </Dialog>
+        </Box>
       </Box>
     );
   }
@@ -338,6 +358,63 @@ class BooleanPref extends React.Component {
   }
 }
 
+class NumberPref extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleSliderChange = this.handleSliderChange.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  handleSliderChange(e, newValue) {
+    this.props.pref.value = newValue;
+    this.forceUpdate();
+  }
+
+  handleInputChange(e) {
+    this.props.pref.value = e.target.value;
+    this.forceUpdate();
+  }
+
+  render() {
+    return (
+      <Accordion elevation={this.props.elevated ? 3 : 1}>
+        <AccordionSummary expandIcon={<Icon>expand_more</Icon>}>
+          <Typography sx={{ width: "33%", flexShrink: 0 }}>
+            {this.props.pref.title}
+          </Typography>
+          <Typography sx={{ color: "text.secondary" }}>
+            Number: {this.props.pref.value}
+          </Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography sx={{ my: 1 }}>{this.props.pref.description}</Typography>
+          <Grid container spacing={2} alignItems="center">
+            <Grid item xs>
+              <Slider
+                value={this.props.pref.value}
+                onChange={this.handleSliderChange}
+                min={this.props.pref.slider.min}
+                max={this.props.pref.slider.max}
+                step={this.props.pref.slider.step}
+              />
+            </Grid>
+            <Grid item xs={1}>
+              <Input
+                value={this.props.pref.value}
+                size="small"
+                onChange={this.handleInputChange}
+                inputProps={{
+                  style: { textAlign: "center" },
+                }}
+              />
+            </Grid>
+          </Grid>
+        </AccordionDetails>
+      </Accordion>
+    );
+  }
+}
+
 class ObjectPref extends React.Component {
   render() {
     return (
@@ -360,6 +437,17 @@ class ObjectPref extends React.Component {
             ) {
               return (
                 <BooleanPref
+                  elevated={!this.props.elevated}
+                  pref={element}
+                  key={key}
+                />
+              );
+            } else if (
+              typeof element.value === "number" ||
+              element.value instanceof Number
+            ) {
+              return (
+                <NumberPref
                   elevated={!this.props.elevated}
                   pref={element}
                   key={key}
