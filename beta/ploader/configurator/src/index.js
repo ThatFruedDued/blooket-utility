@@ -371,8 +371,12 @@ class NumberPref extends React.Component {
   }
 
   handleInputChange(e) {
-    this.props.pref.value = e.target.value;
-    this.forceUpdate();
+    try {
+      if(!isNaN(parseFloat(e.target.value))) {
+        this.props.pref.value = parseFloat(e.target.value);
+        this.forceUpdate();
+      }
+    } catch {}
   }
 
   render() {
