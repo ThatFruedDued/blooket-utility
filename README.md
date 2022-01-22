@@ -24,7 +24,7 @@ Thats it! If you have more advanced questions, I (or someone else with experienc
 
 ### Support Discord
 
-The support Discord server can be found (here)[https://discord.gg/ETY96d4XEF].
+The support Discord server can be found [here](https://discord.gg/ETY96d4XEF).
 
 ## Is this just a phishing page to get my account?
 
