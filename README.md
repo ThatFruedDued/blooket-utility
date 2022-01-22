@@ -4,7 +4,7 @@ The most advanced and compatible modding utility for Blooket. Proudly 100% open 
 
 ## How do I use it?
 
-The easiest way to use this utility is to simply go to https://blooket-utility.okr765.com. The utility can then be configured by going to the (configuration page)[https://blooket-utility.okr765.com/conf].
+The easiest way to use this utility is to simply go to https://blooket-utility.okr765.com. The utility can then be configured by going to the [configuration page](https://blooket-utility.okr765.com/conf).
 
 ### The Configuration Page
 
