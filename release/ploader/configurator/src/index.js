@@ -101,10 +101,11 @@ class App extends React.Component {
 
   confirmRemoveInjectable() {
     this.setState({ removeDialogOpen: false });
-    blooketUtility.injectables.splice(
-      blooketUtility.injectables.indexOf(this.state.injectableToRemove),
-      1
-    );
+    for (const [i, injectable] of Object.entries(blooketUtility.injectables)) {
+      if (this.state.injectableToRemove.url === injectable.url) {
+        blooketUtility.injectables.splice(i, 1);
+      }
+    }
     if (this.state.injectableToRemove.cleanupScript) {
       const scriptElement = document.createElement("script");
       scriptElement.src = this.state.injectableToRemove.cleanupScript;
@@ -372,7 +373,7 @@ class NumberPref extends React.Component {
 
   handleInputChange(e) {
     try {
-      if(!isNaN(parseFloat(e.target.value))) {
+      if (!isNaN(parseFloat(e.target.value))) {
         this.props.pref.value = parseFloat(e.target.value);
         this.forceUpdate();
       }

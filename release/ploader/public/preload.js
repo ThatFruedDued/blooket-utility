@@ -49,25 +49,49 @@
         blooketUtility.cookie = this.getResponseHeader("bu-set-cookie");
       }
     });
-    this._send(...arguments);
+    return this._send(...arguments);
   };
 
-  Object.defineProperty(Object.prototype, "baseURL", {
-    get: function () {
-      return (
+  XMLHttpRequest.prototype._open = XMLHttpRequest.prototype.open;
+  XMLHttpRequest.prototype.open = function () {
+    if (
+      ["https://api.blooket.com/", "https://www.googleapis.com/"].some((e) =>
+        arguments[1].startsWith(e)
+      )
+    )
+      arguments[1] =
         (blooketUtility.corsProxyUrl ||
-          "https://blooket-utility-cors.herokuapp.com/") +
-        "https://api.blooket.com"
-      );
-    },
-    set: function () {
-      return;
-    },
-  });
+          "https://blooket-utility-cors.okr765.com/") + arguments[1];
+    return this._open(...arguments);
+  };
+
+  setInterval(async () => {
+    for (const img of Object.values(document.getElementsByTagName("img"))) {
+      if (img.src?.startsWith("/") && !img.stop) {
+        img.stop = true;
+        img.src = URL.createObjectURL(
+          new Blob([
+            await (
+              await fetch(
+                (blooketUtility.corsProxyUrl ||
+                  "https://blooket-utility-cors.okr765.com/") +
+                  "https://www.blooket.com" +
+                  img.src
+              )
+            ).arrayBuffer(),
+          ])
+        );
+      }
+      if (img.src?.startsWith("https://www.blooket.com") && !img.stop)
+        img.src =
+          (blooketUtility.corsProxyUrl ||
+            "https://blooket-utility-cors.okr765.com/") + img.src;
+    }
+  }, 10);
 
   Object.defineProperty(HTMLImageElement.prototype, "src", {
     get: function () {
-      return this._src;
+      return this.getAttribute("src");
     },
     set: function (d) {
       this._src = d;
@@ -75,7 +99,7 @@
         this.setAttribute(
           "src",
           (blooketUtility.corsProxyUrl ||
-            "https://blooket-utility-cors.herokuapp.com/") +
+            "https://blooket-utility-cors.okr765.com/") +
             "https://www.blooket.com" +
             d
         );
