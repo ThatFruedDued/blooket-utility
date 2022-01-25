@@ -11,9 +11,14 @@ let blooketScripts = "";
 async function updateBlooket() {
   try {
     blooketScripts = (
-      await (await fetch("https://www.blooket.com/")).text().catch(() => {})
+      await (
+        await fetch("https://www.blooket.com/").catch((e) => console.log(e))
+      )
+        .text()
+        .catch((e) => {
+          console.log(e);
+        })
     )
-      .catch(() => {})
       .split('<div id="app"></div>')[1]
       .replace("</body></html>", "")
       .split('src="')
@@ -32,7 +37,9 @@ async function updateBlooket() {
       .filter((str) => !str.includes(lastScript))
       .join("<script");
     blooketScripts += `<script>window.loaderSrc="${lastScript}"</script>`;
-  } catch {}
+  } catch (e) {
+    console.log(e);
+  }
 }
 
 await updateBlooket();
