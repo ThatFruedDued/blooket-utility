@@ -9,20 +9,30 @@ const index = readFileSync("./public/index.html", "utf8");
 let blooketScripts = "";
 
 async function updateBlooket() {
-  blooketScripts = (await (await fetch("https://www.blooket.com/")).text())
-    .split('<div id="app"></div>')[1]
-    .replace("</body></html>", "")
-    .split('src="')
-    .map((src) => {
-      if (src.startsWith("/")) {
-        return "https://www.blooket.com" + src;
-      }
-      return src;
-    })
-    .join('src="');
-  const lastScript = blooketScripts.split('<script src="')[blooketScripts.split('<script src="').length - 1].split('"')[0];
-  blooketScripts = blooketScripts.split("<script").filter(str => !str.includes(lastScript)).join("<script");
-  blooketScripts += `<script>window.loaderSrc="${lastScript}"</script>`;
+  try {
+    blooketScripts = (
+      await (await fetch("https://www.blooket.com/")).text().catch(() => {})
+    )
+      .catch(() => {})
+      .split('<div id="app"></div>')[1]
+      .replace("</body></html>", "")
+      .split('src="')
+      .map((src) => {
+        if (src.startsWith("/")) {
+          return "https://www.blooket.com" + src;
+        }
+        return src;
+      })
+      .join('src="');
+    const lastScript = blooketScripts
+      .split('<script src="')
+      [blooketScripts.split('<script src="').length - 1].split('"')[0];
+    blooketScripts = blooketScripts
+      .split("<script")
+      .filter((str) => !str.includes(lastScript))
+      .join("<script");
+    blooketScripts += `<script>window.loaderSrc="${lastScript}"</script>`;
+  } catch {}
 }
 
 await updateBlooket();
