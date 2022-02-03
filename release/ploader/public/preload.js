@@ -55,16 +55,18 @@
   XMLHttpRequest.prototype._open = XMLHttpRequest.prototype.open;
   XMLHttpRequest.prototype.open = function () {
     if (
-      ["https://api.blooket.com/", "https://www.googleapis.com/"].some((e) =>
-        arguments[1].startsWith(e)
-      )
+      [
+        "https://api.blooket.com/",
+        "https://fb.blooket.com/",
+        "https://www.googleapis.com/",
+      ].some((e) => arguments[1].startsWith(e))
     )
       arguments[1] =
         (blooketUtility.corsProxyUrl ||
           "https://blooket-utility-cors.okr765.com/") + arguments[1];
+
     return this._open(...arguments);
   };
-
   setInterval(async () => {
     for (const img of Object.values(document.getElementsByTagName("img"))) {
       if (img.src?.startsWith("/") && !img.stop) {
