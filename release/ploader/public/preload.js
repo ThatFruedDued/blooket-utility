@@ -67,6 +67,40 @@
 
     return this._open(...arguments);
   };
+
+  window._fetch = window.fetch;
+  window.fetch = async function () {
+    if (!arguments[1]) {
+      arguments[1] = {};
+    }
+    if (!arguments[1].headers) {
+      arguments[1].headers = {};
+    }
+    if (
+      !Object.keys(arguments[1].headers).some(
+        (e) => e.toLowerCase() === "bu-cookie"
+      )
+    ) {
+      arguments[1].headers["bu-cookie"] = blooketUtility.cookie;
+    }
+    if (
+      [
+        "https://api.blooket.com/",
+        "https://fb.blooket.com/",
+        "https://www.googleapis.com/",
+      ].some((e) => arguments[0].startsWith(e))
+    ) {
+      arguments[0] =
+        (blooketUtility.corsProxyUrl ||
+          "https://blooket-utility-cors.okr765.com/") + arguments[0];
+    }
+    const res = await window._fetch(...arguments);
+    if (res.headers.get("bu-set-cookie")) {
+      blooketUtility.cookie = res.headers.get("bu-set-cookie");
+    }
+    return res;
+  };
+
   setInterval(async () => {
     for (const img of Object.values(document.getElementsByTagName("img"))) {
       if (img.src?.startsWith("/") && !img.stop) {
