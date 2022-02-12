@@ -4,11 +4,11 @@ This guide will teach you the ways to get the Blooket Utility running on a compu
 
 ## The iframe method
 
-This method has the highest probability to work if you are being blocked by the computer. This could be something like a forced installed extension on a web browser with the intention to block sites. Simply navigate to https://thatfrueddued.github.io/unblock.html. If successful, you should be able to use the site like normal.
+This method has the highest probability to work if you are being blocked by the computer. This could be something like a forced installed extension on a web browser with the intention to block sites. Simply navigate to <https://thatfrueddued.github.io/blooket-utility/unblock.html>. If successful, you should be able to use the site like normal.
 
 ## The DNS method
 
-This method is useful if the network you are on is blocking the Blooket Utility. First, you have to figure out how to set custom DNS servers on your device. Try looking up "set custom dns servers on a chromebook" or "set custom dns servers on a windows 10" for your specific device. Then, change the primary or first DNS server to "1.1.1.1" and if a secondary option is available, set it to "1.0.0.1" (both without quotes). Then, save these settings. Try accessing the Blooket Utility by going to https://blooket-utility.okr765.com. If you get an error message from your browser about your connection, this means the method failed.
+This method is useful if the network you are on is blocking the Blooket Utility. First, you have to figure out how to set custom DNS servers on your device. Try looking up "set custom dns servers on a chromebook" or "set custom dns servers on a windows 10" for your specific device. Then, change the primary or first DNS server to "1.1.1.1" and if a secondary option is available, set it to "1.0.0.1" (both without quotes). Then, save these settings. Try accessing the Blooket Utility by going to <https://blooket-utility.okr765.com>. If you get an error message from your browser about your connection, this means the method failed.
 
 ## The VPN method
 
