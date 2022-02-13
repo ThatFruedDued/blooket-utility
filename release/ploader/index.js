@@ -56,6 +56,8 @@ app.all("*", (req, res) => {
     res.sendFile(resolve("./public/conf.bundle.js"));
   } else if (req.originalUrl === "/reset") {
     res.send("<script>localStorage.clear();location.href='/conf'</script>");
+  } else if (req.originalUrl === "/gui.bundle.js") {
+    res.sendFile(resolve("./public/gui.bundle.js"));
   } else {
     res.send(index.replace("%BLOOKET_SCRIPTS%", blooketScripts));
   }

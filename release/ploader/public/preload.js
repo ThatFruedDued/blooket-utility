@@ -17,18 +17,26 @@
     },
     set: (obj, prop, value) => {
       obj[prop] = value;
-      localStorage.setItem(
-        "blooket-utility",
-        JSON.stringify(window.blooketUtility)
-      );
+      if (prop !== "api")
+        localStorage.setItem(
+          "blooket-utility",
+          JSON.stringify(window.blooketUtility, (key, value) => {
+            if (key !== "api") return value;
+            else return undefined;
+          })
+        );
       return true;
     },
     deleteProperty: (obj, prop) => {
       const output = delete obj[prop];
-      localStorage.setItem(
-        "blooket-utility",
-        JSON.stringify(window.blooketUtility)
-      );
+      if (prop !== "api")
+        localStorage.setItem(
+          "blooket-utility",
+          JSON.stringify(window.blooketUtility, (key, value) => {
+            if (key !== "api") return value;
+            else return undefined;
+          })
+        );
       return output;
     },
   };
@@ -36,6 +44,72 @@
     JSON.parse(localStorage.getItem("blooket-utility")),
     handler
   );
+
+  window.blooketUtility.api = {
+    gui: {},
+    _gui: { shouldOpen: false },
+  };
+
+  const konami = [
+    "ArrowUp",
+    "ArrowUp",
+    "ArrowDown",
+    "ArrowDown",
+    "ArrowLeft",
+    "ArrowRight",
+    "ArrowLeft",
+    "ArrowRight",
+  ];
+  const konamiTouch = ["u", "u", "d", "d", "l", "r", "l", "r"];
+  let konamiProgress = 0;
+  let canFinishTimeout;
+  window.addEventListener("keydown", (e) => {
+    if (e.key === konami[konamiProgress]) {
+      konamiProgress++;
+      if (konamiProgress === 1) {
+        canFinishTimeout = setTimeout(() => {
+          konamiProgress = 0;
+        }, 5000);
+      }
+      if (konamiProgress === 8) {
+        window.blooketUtility.api._gui.shouldOpen = true;
+        konamiProgress = 0;
+        clearTimeout(canFinishTimeout);
+      }
+    } else {
+      konamiProgress = 0;
+      clearTimeout(canFinishTimeout);
+    }
+  });
+  window.addEventListener("touchstart", (e) => {
+    function getKonamiTouch(touch) {
+      if (konamiTouch[konamiProgress] === "u") {
+        if (touch.clientY < window.innerHeight / 2) return true;
+      } else if (konamiTouch[konamiProgress] === "d") {
+        if (touch.clientY > window.innerHeight / 2) return true;
+      } else if (konamiTouch[konamiProgress] === "l") {
+        if (touch.clientX < window.innerWidth / 2) return true;
+      } else if (konamiTouch[konamiProgress] === "r") {
+        if (touch.clientX > window.innerWidth / 2) return true;
+      }
+    }
+    if (getKonamiTouch(e.touches[0])) {
+      konamiProgress++;
+      if (konamiProgress === 1) {
+        canFinishTimeout = setTimeout(() => {
+          konamiProgress = 0;
+        }, 5000);
+      }
+      if (konamiProgress === 8) {
+        window.blooketUtility.api._gui.shouldOpen = true;
+        konamiProgress = 0;
+        clearTimeout(canFinishTimeout);
+      }
+    } else {
+      konamiProgress = 0;
+      clearTimeout(canFinishTimeout);
+    }
+  });
 
   XMLHttpRequest.prototype._send = XMLHttpRequest.prototype.send;
   XMLHttpRequest.prototype.send = function () {
