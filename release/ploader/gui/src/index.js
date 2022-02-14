@@ -5,18 +5,16 @@ import {
   Dialog,
   DialogContent,
   Typography,
-  CssBaseline,
   AccordionSummary,
   Icon,
   AccordionDetails,
   Button,
 } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { minWidth } from "@mui/system";
 
 function ButtonGroup(props) {
   return (
-    <Accordion elevation={props.elevated ? 3 : 1} sx={{ minWidth: "50vw" }}>
+    <Accordion elevation={props.elevated ? 3 : 1}>
       <AccordionSummary expandIcon={<Icon>expand_more</Icon>}>
         <Typography sx={{ width: "33%", flexShrink: 0 }}>
           {props.items.title}
@@ -99,12 +97,19 @@ const theme = createTheme({
         baseClassName: "material-icons-round",
       },
     },
+    MuiDialog: {
+      styleOverrides: {
+        paper: {
+          minWidth: "90vh",
+          maxWidth: "90vh",
+        },
+      },
+    },
   },
 });
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
-    <CssBaseline />
     <App />
   </ThemeProvider>,
   document.querySelector("bu-gui")
