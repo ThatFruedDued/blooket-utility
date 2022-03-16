@@ -12,7 +12,9 @@ async function updateBlooket() {
   try {
     blooketScripts = (
       await (
-        await fetch("https://www.blooket.com/").catch((e) => console.log(e))
+        await fetch("https://dashboard.blooket.com/").catch((e) =>
+          console.log(e)
+        )
       )
         .text()
         .catch((e) => {
@@ -24,7 +26,7 @@ async function updateBlooket() {
       .split('src="')
       .map((src) => {
         if (src.startsWith("/")) {
-          return "https://www.blooket.com" + src;
+          return "https://dashboard.blooket.com" + src;
         }
         return src;
       })
