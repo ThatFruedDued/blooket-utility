@@ -2,9 +2,13 @@
 
 The most advanced and compatible modding utility for Blooket. Proudly 100% open source.
 
-## Happy 100 Commits!
+## Temporary Maintenance Mode
 
-The ThatFruedDued Blooket Utility recently hit 100 commits to the codebase. It has been a long journey through various design revisions to get to where the utility is now. First was the cloader, where I loaded modified versions of Blooket's compiled code. It became patched, which made me introduce the wloader method, but it was still very difficult to maintain. Once I realized this, I switched to the current ploader system which loads scripts before loading unmodified Blooket code. Please leave a star to help this utility continue! To celebrate 100 commits, I have released a new GUI API that allows injectables to add buttons on screen more easily!
+The ThatFruedDued Blooket Utility is currently is maintenance mode for the time being. My life has gotten busy and being the (mostly) sole contributor to this project means that I can't update it very often.
+
+### What does this mean?
+
+Critical bugs will be fixed as fast as I can, but new features and fixing other projects (like <https://thatfrueddued.github.io/blooket-utility-injectables>) will not be fixed until I have more time.
 
 ## How do I use it?
 
