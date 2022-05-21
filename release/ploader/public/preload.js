@@ -133,6 +133,7 @@
         "https://api.blooket.com/",
         "https://fb.blooket.com/",
         "https://www.googleapis.com/",
+        "https://identitytoolkit.googleapis.com/",
       ].some((e) => arguments[1].startsWith(e))
     )
       arguments[1] =
@@ -162,6 +163,7 @@
         "https://api.blooket.com/",
         "https://fb.blooket.com/",
         "https://www.googleapis.com/",
+        "https://identitytoolkit.googleapis.com/",
       ].some((e) => arguments[0].startsWith(e))
     ) {
       arguments[0] =
