@@ -187,7 +187,7 @@
               await fetch(
                 (blooketUtility.corsProxyUrl ||
                   "https://blooket-utility-cors.okr765.com/") +
-                  "https://www.blooket.com" +
+                  "https://dashboard.blooket.com" +
                   img.src
               )
             ).arrayBuffer(),
@@ -212,7 +212,7 @@
           "src",
           (blooketUtility.corsProxyUrl ||
             "https://blooket-utility-cors.okr765.com/") +
-            "https://www.blooket.com" +
+            "https://dashboard.blooket.com" +
             d
         );
       } else {
