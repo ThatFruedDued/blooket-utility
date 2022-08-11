@@ -71,6 +71,16 @@ app.all("*", (req, res) => {
     res.sendFile(resolve("./public/gui.bundle.js"));
   } else if (req.originalUrl === "/login") {
     res.send(index.replace("%BLOOKET_SCRIPTS%", blooketScripts.id));
+  } else if (req.originalUrl === "/config") {
+    res.json({
+      googleClientId:
+        "366017072728-ohc155g4bl2467hdr4k3lbfmbpcaofqr.apps.googleusercontent.com",
+      recaptchaSiteKey: "6LfKi6gUAAAAAN3mghcLqZm5lgFOh1itqc8CZj6-",
+      isDev: false,
+      wwwBase: "https://blooket-utility.okr765.com",
+      dashboardBase: "https://blooket-utility.okr765.com",
+      securityBase: "https://blooket-utility.okr765.com",
+    });
   } else {
     res.send(index.replace("%BLOOKET_SCRIPTS%", blooketScripts.dashboard));
   }
