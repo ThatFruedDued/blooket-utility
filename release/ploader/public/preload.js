@@ -113,6 +113,7 @@
 
   XMLHttpRequest.prototype._send = XMLHttpRequest.prototype.send;
   XMLHttpRequest.prototype.send = function () {
+    console.log(...arguments);
     if (blooketUtility.cookie)
       this.setRequestHeader("bu-cookie", blooketUtility.cookie);
     this.addEventListener("readystatechange", (e) => {
@@ -156,6 +157,7 @@
 
   window._fetch = window.fetch;
   window.fetch = async function () {
+    console.log(...arguments);
     if (!arguments[1]) {
       arguments[1] = {};
     }
@@ -168,6 +170,16 @@
       )
     ) {
       arguments[1].headers["bu-cookie"] = blooketUtility.cookie;
+    }
+    if (
+      location.pathname === "/login" &&
+      arguments[0].startsWith(location.origin + "/api")
+    ) {
+      arguments[0] =
+        (blooketUtility.corsProxyUrl ||
+          "https://blooket-utility-cors.okr765.com/") +
+        "https://id.blooket.com" +
+        arguments[0].substring(location.origin.length);
     }
     if (
       [
