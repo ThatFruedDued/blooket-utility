@@ -69,7 +69,7 @@ app.all("*", (req, res) => {
     res.send("<script>localStorage.clear();location.href='/conf'</script>");
   } else if (req.originalUrl === "/gui.bundle.js") {
     res.sendFile(resolve("./public/gui.bundle.js"));
-  } else if (req.originalUrl === "/login") {
+  } else if (req.originalUrl === "/login" || req.originalUrl === "/logout") {
     res.send(index.replace("%BLOOKET_SCRIPTS%", blooketScripts.id));
   } else if (req.originalUrl === "/api/config") {
     const url = "https://blooket-utility.okr765.com";

@@ -135,7 +135,10 @@
       return this._open(...arguments);
     }
 
-    if (location.pathname === "/login" && arguments[1].startsWith("/api")) {
+    if (
+      (location.pathname === "/login" || location.pathname === "/logout") &&
+      arguments[1].startsWith("/api")
+    ) {
       arguments[1] =
         (blooketUtility.corsProxyUrl ||
           "https://blooket-utility-cors.okr765.com/") +
@@ -173,16 +176,6 @@
       )
     ) {
       arguments[1].headers["bu-cookie"] = blooketUtility.cookie;
-    }
-    if (
-      location.pathname === "/login" &&
-      arguments[0].startsWith(location.origin + "/api")
-    ) {
-      arguments[0] =
-        (blooketUtility.corsProxyUrl ||
-          "https://blooket-utility-cors.okr765.com/") +
-        "https://id.blooket.com" +
-        arguments[0].substring(location.origin.length);
     }
     if (
       [
