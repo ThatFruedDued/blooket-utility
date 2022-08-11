@@ -113,7 +113,6 @@
 
   XMLHttpRequest.prototype._send = XMLHttpRequest.prototype.send;
   XMLHttpRequest.prototype.send = function () {
-    console.log(...arguments);
     if (blooketUtility.cookie)
       this.setRequestHeader("bu-cookie", blooketUtility.cookie);
     this.addEventListener("readystatechange", (e) => {
@@ -129,6 +128,7 @@
 
   XMLHttpRequest.prototype._open = XMLHttpRequest.prototype.open;
   XMLHttpRequest.prototype.open = function () {
+    console.log(...arguments);
     if (
       location.pathname === "/login" &&
       arguments[1].startsWith(location.origin + "/api")
