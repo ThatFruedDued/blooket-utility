@@ -129,7 +129,11 @@
   XMLHttpRequest.prototype._open = XMLHttpRequest.prototype.open;
   XMLHttpRequest.prototype.open = function () {
     console.log(...arguments);
-    if (location.pathname === "/login" && arguments[1].startsWith("/api")) {
+    if (
+      location.pathname === "/login" &&
+      arguments[1].startsWith("/api") &&
+      arguments[1] !== "/api/config"
+    ) {
       arguments[1] =
         (blooketUtility.corsProxyUrl ||
           "https://blooket-utility-cors.okr765.com/") +

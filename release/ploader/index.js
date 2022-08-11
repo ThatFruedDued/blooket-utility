@@ -71,7 +71,7 @@ app.all("*", (req, res) => {
     res.sendFile(resolve("./public/gui.bundle.js"));
   } else if (req.originalUrl === "/login") {
     res.send(index.replace("%BLOOKET_SCRIPTS%", blooketScripts.id));
-  } else if (req.originalUrl === "/config") {
+  } else if (req.originalUrl === "/api/config") {
     res.json({
       googleClientId:
         "366017072728-ohc155g4bl2467hdr4k3lbfmbpcaofqr.apps.googleusercontent.com",
