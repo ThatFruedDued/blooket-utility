@@ -6,13 +6,14 @@ import { readFileSync } from "node:fs";
 const app = express();
 
 const index = readFileSync("./public/index.html", "utf8");
-let blooketScripts = "";
 
-async function updateBlooket() {
+let blooketScripts = {};
+
+async function updateBlooket(subdomain) {
   try {
-    blooketScripts = (
+    blooketScripts[subdomain] = (
       await (
-        await fetch("https://dashboard.blooket.com/").catch((e) =>
+        await fetch(`https://${subdomain}.blooket.com/`).catch((e) =>
           console.log(e)
         )
       )
@@ -26,26 +27,34 @@ async function updateBlooket() {
       .split('src="')
       .map((src) => {
         if (src.startsWith("/")) {
-          return "https://dashboard.blooket.com" + src;
+          return `https://${subdomain}.blooket.com` + src;
         }
         return src;
       })
       .join('src="');
-    const lastScript = blooketScripts
+    const lastScript = blooketScripts[subdomain]
       .split('<script src="')
-      [blooketScripts.split('<script src="').length - 1].split('"')[0];
-    blooketScripts = blooketScripts
+      [blooketScripts[subdomain].split('<script src="').length - 1].split(
+        '"'
+      )[0];
+    blooketScripts[subdomain] = blooketScripts[subdomain]
       .split("<script")
       .filter((str) => !str.includes(lastScript))
       .join("<script");
-    blooketScripts += `<script>window.loaderSrc="${lastScript}"</script>`;
+    blooketScripts[
+      subdomain
+    ] += `<script>window.loaderSrc="${lastScript}"</script>`;
   } catch (e) {
     console.log(e);
   }
 }
 
-await updateBlooket();
-setInterval(updateBlooket, 60000);
+await updateBlooket("dashboard");
+await updateBlooket("id");
+setInterval(() => {
+  updateBlooket("dashboard");
+  updateBlooket("id");
+}, 60000);
 
 app.all("*", (req, res) => {
   if (req.originalUrl === "/preload.js") {
@@ -60,8 +69,10 @@ app.all("*", (req, res) => {
     res.send("<script>localStorage.clear();location.href='/conf'</script>");
   } else if (req.originalUrl === "/gui.bundle.js") {
     res.sendFile(resolve("./public/gui.bundle.js"));
+  } else if (req.originalUrl === "/login") {
+    res.send(index.replace("%BLOOKET_SCRIPTS%", blooketScripts.id));
   } else {
-    res.send(index.replace("%BLOOKET_SCRIPTS%", blooketScripts));
+    res.send(index.replace("%BLOOKET_SCRIPTS%", blooketScripts.dashboard));
   }
 });
 
