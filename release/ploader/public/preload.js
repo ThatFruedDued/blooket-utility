@@ -163,7 +163,7 @@
 
   String.prototype._concat = String.prototype.concat;
   String.prototype.concat = function () {
-    if (this === "" && arguments[0] === "https://id.blooket.com") {
+    if (this.toString() === "" && arguments[0] === "https://id.blooket.com") {
       if (arguments[1] === "/logout" || arguments[1] === "/login")
         return "https://blooket-utility.okr765.com/" + arguments[1];
     }
