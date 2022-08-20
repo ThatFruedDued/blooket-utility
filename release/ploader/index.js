@@ -25,25 +25,13 @@ async function updateBlooket(subdomain) {
       .split('<div id="app"></div>')[1]
       .replace("</body></html>", "")
       .split('src="')
+      .filter((_, index) => index !== 0)
       .map((src) => {
         if (src.startsWith("/")) {
-          return `https://${subdomain}.blooket.com` + src;
+          return `https://${subdomain}.blooket.com` + src.split('"')[0];
         }
-        return src;
-      })
-      .join('src="');
-    const lastScript = blooketScripts[subdomain]
-      .split('<script src="')
-      [blooketScripts[subdomain].split('<script src="').length - 1].split(
-        '"'
-      )[0];
-    blooketScripts[subdomain] = blooketScripts[subdomain]
-      .split("<script")
-      .filter((str) => !str.includes(lastScript))
-      .join("<script");
-    blooketScripts[
-      subdomain
-    ] += `<script>window.loaderSrc="${lastScript}"</script>`;
+        return src.split('"')[0];
+      });
   } catch (e) {
     console.log(e);
   }
@@ -70,7 +58,14 @@ app.all("*", (req, res) => {
   } else if (req.originalUrl === "/gui.bundle.js") {
     res.sendFile(resolve("./public/gui.bundle.js"));
   } else if (req.originalUrl === "/login" || req.originalUrl === "/logout") {
-    res.send(index.replace("%BLOOKET_SCRIPTS%", blooketScripts.id));
+    res.send(
+      index.replace(
+        "%BLOOKET_SCRIPTS%",
+        `<script>window.blooketScripts=${JSON.stringify(
+          blooketScripts.id
+        )}</script>`
+      )
+    );
   } else if (req.originalUrl === "/api/config") {
     const url = "https://blooket-utility.okr765.com";
     res.json({
@@ -86,7 +81,14 @@ app.all("*", (req, res) => {
       frontendDashboardBase: url,
     });
   } else {
-    res.send(index.replace("%BLOOKET_SCRIPTS%", blooketScripts.dashboard));
+    res.send(
+      index.replace(
+        "%BLOOKET_SCRIPTS%",
+        `<script>window.blooketScripts=${JSON.stringify(
+          blooketScripts.dashboard
+        )}</script>`
+      )
+    );
   }
 });
 

@@ -276,15 +276,54 @@
   }).then(() => {
     new Promise((r) => {
       const interval = setInterval(() => {
-        if (window.loaderSrc) {
+        if (window.blooketScripts) {
           clearInterval(interval);
           r();
         }
       }, 10);
-    }).then(() => {
-      const scriptElement = document.createElement("script");
-      scriptElement.src = window.loaderSrc;
-      document.body.appendChild(scriptElement);
+    }).then(async () => {
+      const promises = [];
+      for (const script of window.blooketScripts) {
+        promises.push(
+          new Promise(async (r) => {
+            const res = await fetch(
+              (blooketUtility.corsProxyUrl ||
+                "https://blooket-utility-cors.okr765.com/") + script
+            );
+            r(await res.text());
+          })
+        );
+      }
+      await Promise.all(promises);
+      for (const promise of promises) {
+        let script = await promise;
+        const safeReplacer = "db94f1e803ec4ba0b038ecca3ecbaeb1";
+        const safeReplacer2 = "d7da1ee272114f02b14e6b0e4196f3b2";
+        const unsafeTerms = ["blooket-utility", "blooketUtility"];
+        const redefinedTerms = [
+          "window.fetch=",
+          "XMLHttpRequest.prototype.open=",
+          "XMLHttpRequest.prototype.send=",
+          "String.prototype.concat=",
+        ];
+        const deletions = ["window.blooketUtility", "window._fetch"];
+        for (const unsafeTerm of unsafeTerms) {
+          script = script.replace(unsafeTerm, safeReplacer);
+        }
+        for (const redefinedTerm of redefinedTerms) {
+          script = script.replace(
+            redefinedTerm,
+            "window." + safeReplacer2 + "="
+          );
+        }
+        for (const deletion of deletions) {
+          script = script.replace(
+            "delete " + deletion,
+            "delete window." + safeReplacer
+          );
+        }
+        eval(script);
+      }
     });
   });
 })();
