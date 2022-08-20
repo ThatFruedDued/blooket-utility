@@ -306,18 +306,18 @@
           "XMLHttpRequest.prototype.send=",
           "String.prototype.concat=",
         ];
-        const deletions = ["window.blooketUtility", "window._fetch"];
+        const deletions = ["window._fetch"];
         for (const unsafeTerm of unsafeTerms) {
-          script = script.replace(unsafeTerm, safeReplacer);
+          script = script.replaceAll(unsafeTerm, safeReplacer);
         }
         for (const redefinedTerm of redefinedTerms) {
-          script = script.replace(
+          script = script.replaceAll(
             redefinedTerm,
             "window." + safeReplacer2 + "="
           );
         }
         for (const deletion of deletions) {
-          script = script.replace(
+          script = script.replaceAll(
             "delete " + deletion,
             "delete window." + safeReplacer
           );
