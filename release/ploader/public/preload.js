@@ -322,6 +322,7 @@
             "delete window." + safeReplacer
           );
         }
+        console.log(script);
         eval(script);
       }
     });
