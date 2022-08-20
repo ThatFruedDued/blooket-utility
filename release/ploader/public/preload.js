@@ -128,8 +128,6 @@
 
   XMLHttpRequest.prototype._open = XMLHttpRequest.prototype.open;
   XMLHttpRequest.prototype.open = function () {
-    console.log(...arguments);
-
     if (arguments[1].endsWith("/api/config")) {
       arguments[1] = location.origin + "/api/config";
       return this._open(...arguments);
@@ -172,7 +170,6 @@
 
   window._fetch = window.fetch;
   window.fetch = async function () {
-    console.log(...arguments);
     if (!arguments[1]) {
       arguments[1] = {};
     }
@@ -322,7 +319,10 @@
             "delete window." + safeReplacer
           );
         }
-        console.log(script);
+        script = script.replaceAll(
+          '"blooket.com"',
+          '"blooket-utility.okr765.com"'
+        );
         eval(script);
       }
     });
